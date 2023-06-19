@@ -1,124 +1,142 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  function useWindowSize() {
+    // Initialize state with undefined width/height so server and client renders match
+    // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+    const [windowSize, setWindowSize] = useState({
+      width: 0,
+      height: 0,
+    });
+  
+    useEffect(() => {
+      // only execute all the code below in client side
+      // Handler to call on window resize
+      function handleResize() {
+        // Set window width/height to state
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+      
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+       
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+      
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }, []); // Empty array ensures that effect is only run on mount
+    return windowSize;
+  }
+
+  var size = useWindowSize();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="bg-white">
+
+      <div className="flex pt-14 md:pt-20 justify-center">
+        <div className="flex flex-col lg:flex-row w-11/12 bg-blue-300 bg-gradient-to-br from-blue-500 to-white rounded-2xl lg:h-auto">
+         
+          <div className="flex h-full w-full pt-32 lg:p-0 lg:w-3/4 justify-center">
+            <div className="flex flex-col h-full max-w-lg justify-center text-center lg:text-left">
+              <h1 className="text-4xl text-white md:text-6xl pb-10">Swim With Us</h1>
+              <p className="pl-10 pr-10 md:p-0 text-xl text-white md:text-3xl">
+                Bure Aqua Academy is a swimming school that provides swimming lessons for all ages and abilities.
+              </p>
+              <Link href="/contact" className="text-blue-400 hover:text-blue-700 self-center bg-white lg:self-start mt-8 max-w-max rounded-md border-2 border-white hover:border-2 hover:border-blue-700 md:text-2xl mb-20 md:mt-14 lg:mb-0  p-3">
+                Contact Us
+              </Link>
+            </div>
+          </div>
+
+          {/* desktop swimlanes */}
+          <div className="hidden lg:flex flex-row float-right pr-20 space-x-32">
+            <Image src="/Swimlane1.png" alt="Swimlane" width="32" height="0" className="z-100" />
+            <Image src="/Swimlane2.png" alt="Swimlane" width="32" height="0" className="z-100" />
+            <Image src="/Swimlane1.png" alt="Swimlane" width="32" height="0" className="z-100" />
+            <Image src="/Swimlane2.png" alt="Swimlane" width="32" height="0" className="z-100" />
+          </div>
+
+          {/* tablet swimlanes */}
+          <div className="md:flex h-full items-end hidden lg:hidden">
+            <div className="md:flex flex-col space-y-24 w-full pb-16 hidden lg:hidden">
+              <Image src="/Swimlane1-horiz.png" alt="Swimlane" width={size.width} height="0" className="z-100" />
+              <Image src="/Swimlane2-horiz.png" alt="Swimlane" width={size.width} height="0" className="z-100" />
+              <Image src="/Swimlane1-horiz.png" alt="Swimlane" width={size.width} height="0" className="z-100" />
+              {/* <Image src="/Swimlane2-horiz.png" alt="Swimlane" width={size.width} height="0" className="z-100" /> */}
+            </div>
+          </div>
+
+          {/* mobile swimlanes */}
+          <div className="flex h-full items-end md:hidden">
+            <div className="flex flex-col space-y-16 w-full pb-16 md:hidden">
+              <Image src="/Swimlane1-horiz.png" alt="Swimlane" width={size.width} height="0" className="z-100" />
+              <Image src="/Swimlane2-horiz.png" alt="Swimlane" width={size.width} height="0" className="z-100" />
+              <Image src="/Swimlane1-horiz.png" alt="Swimlane" width={size.width} height="0" className="z-100" />
+            </div>
+          </div>
+          
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="w-full p-24 pt-20 text-center"> 
+        <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat purus nunc, eget vulputate nibh lobortis vulputate. In mollis nisi at diam blandit, eget suscipit arcu pulvinar.</h1>
+        <hr className="mt-20"></hr>
+      </div>
+      {/* <div className="w-4/5 h-1 bg-black"></div> */}
+
+      <div className="flex flex-col md:flex-row w-full pl-16 pr-16 items-center">
+        <div className="flex flex-col justify-center p-0 pb-20 md:pb-0 md:pr-20 w-full md:w-2/5 text-center md:text-left">
+          <h2 className="text-lg">Our Mission</h2>
+          <hr></hr>
+          <p className="">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat purus nunc, eget vulputate nibh lobortis vulputate. In mollis nisi at diam blandit, eget suscipit arcu pulvinar.
+          </p>
+          <Link href="/mission" className="text-white hover:text-blue-700 self-center bg-blue-400 lg:self-start mt-8 max-w-max rounded-md border-2 border-blue-400 hover:border-2 hover:border-blue-700 p-2">
+            Learn More
+          </Link>
+        </div>
+        <div className="flex w-full md:w-3/5 h-96 bg-blue-300 rounded-lg">
+          <Image src="" className=""/>
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Find in-depth information about Next.js features and API.
+      <div className="flex flex-col md:flex-row w-full pt-40 pl-16 pr-16 items-center">
+        <div className="flex flex-col justify-center w-full text-center pb-20 md:hidden">
+          <h2 className="text-lg">Meet the Team</h2>
+          <hr></hr>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat purus nunc, eget vulputate nibh lobortis vulputate. In mollis nisi at diam blandit, eget suscipit arcu pulvinar.
           </p>
-        </a>
+          <Link href="/about" className="text-white hover:text-blue-700 self-center bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 border-blue-400 hover:border-2 hover:border-blue-700 p-2">
+            Learn More
+          </Link>
+        </div>
+        <div className="flex w-full md:w-3/5 h-96 bg-blue-300 rounded-lg">
+          <Image src="" className=""/>
+        </div>
+        <div className="hidden md:flex md:flex-col justify-center pl-20 w-2/5 text-right">
+          <h2 className="text-lg">Meet the Team</h2>
+          <hr></hr>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas placerat purus nunc, eget vulputate nibh lobortis vulputate. In mollis nisi at diam blandit, eget suscipit arcu pulvinar.
+          </p>
+          <Link href="/about" className="text-white hover:text-blue-700 self-center bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 border-blue-400 hover:border-2 hover:border-blue-700 p-2">
+            Learn More
+          </Link>
+        </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
       </div>
+
     </main>
   )
 }
