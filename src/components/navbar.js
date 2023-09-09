@@ -14,24 +14,37 @@ const Navbar = () => {
 
     return (
         <header className="fixed top-0 left-0 w-full z-50 bg-white text-black">
-            <div className=" px-6 py-2 md:px-10 lg:px-14">
-                <div className="flex items-center justify-between">
+            <div className=" px-6 py-2 md:px-4 lg:px-14">
+                <div className="flex items-center w-full justify-between">
                     {/* Logo and title */}
                     <div className="flex items-center">
                         <div className="hidden lg:block">
-                            <Image src="/logo.png" alt="Logo" width={40} height={40} />
+                            <Image src="/Logo_Bure-Aqua3.png" alt="Logo" width={80} height={40} />
                         </div>
-                        <h1 className="ml-2 text-xl md:text-2xl lg:text-4xl font-semibold">
-                            <Link href="/">
-                            My Website
-                            </Link>
-                        </h1>
+                        <div className="hidden md:block lg:hidden">
+                            <Image src="/Logo_Bure-Aqua3.png" alt="Logo" width={70} height={40} />
+                        </div>
+                        <div className="block md:hidden">
+                            <Image src="/Logo_Bure-Aqua3.png" alt="Logo" width={60} height={40} />
+                        </div>
+                        <div className="flex flex-col">
+                            <h1 className="ml-2 md:text-xl lg:text-2xl font-semibold text-blue-900">
+                                <Link href="/">
+                                Bure-Aqua Academy
+                                </Link>
+                            </h1>
+                            <h2 className="ml-2 text-base lg:text-l text-sky-500">
+                                <Link href="/">
+                                    For Life, Health, and Sport
+                                </Link>
+                            </h2>
+                        </div>
                     </div>
             
                     {/* Desktop navigation */}
-                    <nav className="hidden md:flex md:space-x-3 md:text-md lg:space-x-4 lg:text-xl">
-                        <Link href="/mission" className="hover:text-blue-600">
-                            Mission
+                    <nav className="hidden md:flex ml-auto md:space-x-3 md:text-md lg:space-x-4 lg:text-l">
+                        <Link href="/" className="hover:text-blue-600">
+                            Home
                         </Link>
                         <Link href="/about" className="hover:text-blue-600">
                             About Us
@@ -42,20 +55,22 @@ const Navbar = () => {
                         <Link href="/schedule" className="hover:text-blue-600">
                             Schedule
                         </Link>
-                        <Link href="/programmes" className="hover:text-blue-600">
+                        {/* <Link href="/programmes" className="hover:text-blue-600">
                             Programmes
-                        </Link>
-                        <Link href="/services" className="hover:text-blue-600">
-                            Services
-                        </Link>
+                        </Link> */}
                         <Link href="/contact" className="hover:text-blue-600">
                             Contact Us
                         </Link>
+                        
                     </nav>
-            
+                        
+                    <Link href="/registration" className="hidden md:flex p-2 ml-3 text-white hover:text-black bg-pool-water snap-end rounded-md">
+                        Register Now
+                    </Link>
+
                     {/* Hamburger menu button */}
                     <button
-                    className=" md:hidden focus:outline-none"
+                    className="ml-auto md:hidden focus:outline-none"
                     onClick={toggleMobileMenu}
                     >
                         <i className="fas fa-bars not-italic"></i>
@@ -67,8 +82,8 @@ const Navbar = () => {
                     <nav className="md:hidden mt-2">
                         <ul className="flex flex-col space-y-2">
                             <li>
-                                <Link href="/mission" className="block py-1 px-2 hover:text-blue-600">
-                                    Mission
+                                <Link href="/" className="block py-1 px-2 hover:text-blue-600">
+                                    Home
                                 </Link>
                             </li>
                             <li>
@@ -86,19 +101,24 @@ const Navbar = () => {
                                     Schedule
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link href="/programmes" className="block py-1 px-2 hover:text-blue-600">
                                     Programmes
                                 </Link>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <Link href="/services" className="block py-1 px-2 hover:text-blue-600">
                                     Services
                                 </Link>
-                            </li>
+                            </li> */}
                             <li>
                                 <Link href="/contact" className="block py-1 px-2 hover:text-blue-600">
                                     Contact Us
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/registration" className="block py-1 px-2 hover:text-blue-600">
+                                    Register Now
                                 </Link>
                             </li>
                         </ul>
