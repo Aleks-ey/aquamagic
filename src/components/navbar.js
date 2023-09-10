@@ -42,29 +42,29 @@ const Navbar = () => {
                     </div>
             
                     {/* Desktop navigation */}
-                    <nav className="hidden md:flex ml-auto md:space-x-3 md:text-md lg:space-x-4 lg:text-l">
-                        <Link href="/" className="hover:text-blue-600">
+                    <nav className="hidden md:flex ml-auto md:space-x-3 md:text-md lg:space-x-4 lg:text-l font-bold">
+                        <Link href="/" className="text-blue-900 hover:text-blue-600">
                             Home
                         </Link>
-                        <Link href="/about" className="hover:text-blue-600">
+                        <Link href="/about" className="text-blue-900 hover:text-blue-600">
                             About Us
                         </Link>
-                        <Link href="/location" className="hover:text-blue-600">
+                        <Link href="/location" className="text-blue-900 hover:text-blue-600">
                             Location
                         </Link>
-                        <Link href="/schedule" className="hover:text-blue-600">
+                        <Link href="/schedule" className="text-blue-900 hover:text-blue-600">
                             Schedule
                         </Link>
                         {/* <Link href="/programmes" className="hover:text-blue-600">
                             Programmes
                         </Link> */}
-                        <Link href="/contact" className="hover:text-blue-600">
+                        <Link href="/contact" className="text-blue-900 hover:text-blue-600">
                             Contact Us
                         </Link>
                         
                     </nav>
                         
-                    <Link href="/registration" className="hidden md:flex p-2 ml-3 text-white hover:text-black bg-pool-water snap-end rounded-md">
+                    <Link href="/registration" className="hidden md:flex p-2 ml-3 text-white hover:text-black bg-sky-500 snap-end rounded-md">
                         Register Now
                     </Link>
 

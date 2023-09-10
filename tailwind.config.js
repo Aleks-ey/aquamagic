@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         'buoy-orange': '#ff8170',
         'pool-water': '#2298FF',
+        'gateway-pool-color': '#192d28',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
