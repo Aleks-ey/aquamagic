@@ -38,7 +38,7 @@ const About = () => {
                     <div className="flex flex-col p-2 pt-8 md:p-12 self-center text-center lg:text-left">
                         <h2 className="mb-6 text-xl lg:text-2xl font-bold">Vladimir Bure</h2>
                         <p className="text-base lg:text-xl">
-                        Bure Vladimir Lvovich is the head coach of Bure-Aqua Academy, LLC (CO). 
+                        Vladimir Bure is the head coach of Bure-Aqua Academy, LLC (CO). 
                         Candidate for Master of Sports, member of the American Swimming Coaches Association since 2002 (ASCA USA). 
                         Member of USA Swimming Inc. Graduate of the St. Petersburg State University of Physical Culture named after. P.F. Lesgaft (1998).
                         Founder, head coach of the Russian-American swimming school and the official USA Swimming team “BURE-AQUA” (2002-2008).
@@ -80,7 +80,7 @@ const About = () => {
                     <div className="hidden lg:flex flex-col p-12 self-center">
                         <h2 className="mb-6 text-2xl font-bold">Natalia Bure</h2>
                         <p className="text-xl">
-                        Bure Natalya Pavlovna is the director and a coach of Bure-Aqua Academy, LLC (CO). 
+                        Natalia Bure is the director and a coach of Bure-Aqua Academy, LLC (CO). 
                         Certified Aquatic Specialist (USA). Pediatrician, PhD in Medicine, Associate Professor, specialist in sports medicine, hydrokinesitherapy, medical rehabilitation. 
                         Author of therapeutic and health programs for hydrokinesitherapy, including for babies 1 year of age (“Smart Small Fish”). 
                         Member of the International Aquatic Fitness Association since 2006 (Aquatic Exercise Association) and USA Swimming Inc (since 2002).
@@ -90,7 +90,7 @@ const About = () => {
                     <div className="flex flex-col lg:hidden p-2 pt-8 md:p-12 self-center text-center lg:text-left">
                         <h2 className="mb-6 text-xl font-bold">Natalia Bure</h2>
                         <p>
-                        Bure Natalya Pavlovna is the director and a coach of Bure-Aqua Academy, LLC (CO). 
+                        Natalia Bure is the director and a coach of Bure-Aqua Academy, LLC (CO). 
                         Certified Aquatic Specialist (USA). Pediatrician, PhD in Medicine, Associate Professor, specialist in sports medicine, hydrokinesitherapy, medical rehabilitation. 
                         Author of therapeutic and health programs for hydrokinesitherapy, including for babies 1 year of age (“Smart Small Fish”). 
                         Member of the International Aquatic Fitness Association since 2006 (Aquatic Exercise Association) and USA Swimming Inc (since 2002).
