@@ -52,10 +52,10 @@ export default function Home() {
           <Image src="/images/AEALogo.png" alt="Aquatic Exercise Association Logo" width="100" height="0" className="z-100 w-auto h-auto mt-6" />
         </Link>
         <Link href="https://aeawave.org/atri">
-          <Image src="/images/ATRILOGO.png" alt="Aquatic Therapy & Rehab Institute Logo" typeof='image/webp' width="100" height="0" className="z-100 w-auto h-auto mt-6" />
+          <Image src="/images/USAswimLogo.png" alt="Aquatic Therapy & Rehab Institute Logo" width="100" height="0" className="z-100 w-auto h-auto mt-6" />
         </Link>
         <Link href="https://www.gomotionapp.com/team/wzcolsc/page/home">
-          <Image src="/images/CSLOGO.png" alt="Colorado Swimming Logo" typeof='image/webp' width="100" height="0" className="z-100 w-12 h-auto mt-3" />
+          <Image src="/Schedule.png" alt="Colorado Swimming Logo" width="100" height="0" className="z-100 w-12 h-auto mt-3" />
         </Link>
       </div>
 
