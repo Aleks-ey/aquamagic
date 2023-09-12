@@ -46,16 +46,16 @@ export default function Home() {
 
       <div className="flex flex-row mt-20 space-x-8 md:space-x-24 lg:space-x-32 justify-center">
         <Link href="https://www.usaswimming.org/">
-          <Image src="/USAswimLogo.png" alt="USA Swimming Logo" width="100" height="0" className="z-100 w-20 h-auto" />
+          <Image src="/images/USAswimLogo.png" alt="USA Swimming Logo" width="100" height="0" className="z-100 w-20 h-auto" />
         </Link>
         <Link href="https://aeawave.org/">
-          <Image src="/AEALogo.png" alt="Aquatic Exercise Association Logo" width="100" height="0" className="z-100 w-auto h-auto mt-6" />
+          <Image src="/images/AEALogo.png" alt="Aquatic Exercise Association Logo" width="100" height="0" className="z-100 w-auto h-auto mt-6 bg-transparent" />
         </Link>
         <Link href="https://aeawave.org/atri">
-          <Image src="/ATRILOGO.png" alt="Aquatic Therapy & Rehab Institute Logo" width="100" height="0" className="z-100 w-auto h-auto mt-6" />
+          <Image src="/images/ATRILOGO.png" alt="Aquatic Therapy & Rehab Institute Logo" width="100" height="0" className="z-100 w-auto h-auto mt-6" />
         </Link>
         <Link href="https://www.gomotionapp.com/team/wzcolsc/page/home">
-          <Image src="/CSLOGO.png" alt="Colorado Swimming Logo" width="100" height="0" className="z-100 w-12 h-auto mt-3" />
+          <Image src="/images/CSLOGO.png" alt="Colorado Swimming Logo" width="100" height="0" className="z-100 w-12 h-auto mt-3" />
         </Link>
       </div>
 
