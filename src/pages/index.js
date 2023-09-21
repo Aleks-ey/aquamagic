@@ -44,7 +44,7 @@ export default function Home() {
     <main className="bg-white">
 
 
-      <div className="flex flex-row mt-20 space-x-8 md:space-x-24 lg:space-x-32 justify-center">
+      <div className="flex flex-row h-auto mt-20 md:mt-24 pl-2 pr-3 space-x-8 md:space-x-24 lg:space-x-32 justify-center">
         <Link href="https://www.usaswimming.org/">
           <Image src="/images/USAswimLogo.png" alt="USA Swimming Logo" width="100" height="0" className="z-100 w-20 h-auto" />
         </Link>
@@ -52,15 +52,15 @@ export default function Home() {
           <Image src="/images/AEALogo.png" alt="Aquatic Exercise Association Logo" width="100" height="0" className="z-100 w-auto h-auto mt-6" />
         </Link>
         <Link href="https://aeawave.org/atri">
-          <Image src="/images/ATRILogo2.png" alt="Aquatic Therapy & Rehab Institute Logo" width="100" height="0" className="z-100 w-auto h-auto mt-6" />
+          <Image src="/images/ATRILogo2.png" alt="Aquatic Therapy & Rehab Institute Logo" width="100" height="0" className="z-100 w-auto h-auto mt-5" />
         </Link>
         <Link href="https://www.gomotionapp.com/team/wzcolsc/page/home">
-          <Image src="/images/CSLogo.jpeg" alt="Colorado Swimming Logo" width="100" height="0" className="z-100 w-12 h-auto mt-3" />
+          <Image src="/images/CSLogo.jpeg" alt="Colorado Swimming Logo" width="100" height="0" className="z-100 w-12 h-auto mt-1" />
         </Link>
       </div>
 
-      <div className="flex justify-center">
-        <div className="flex flex-col lg:flex-row w-11/12 bg-gradient-to-br from-pool-water to-white lg:bg-gateway-pool lg:bg-cover lg:opacity-80 rounded-2xl lg:h-auto">
+      <div className="flex h-auto justify-center">
+        <div className="flex flex-col lg:flex-row w-11/12 h-auto bg-gradient-to-br from-pool-water to-white lg:bg-gateway-pool lg:bg-cover lg:opacity-80 rounded-2xl lg:h-auto">
          
           {/* <div className="flex flex-row lg:hidden mt-2 space-x-10 justify-center">
             <Image src="/USAswimLogo.png" alt="USA Swimming Logo" width="100" height="0" className="z-100 w-1/2 h-auto" />
@@ -111,14 +111,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full p-20 pt-6 text-center"> 
+      <div className="h-auto w-full p-8 md:p-20 pt-6 text-center"> 
         <h2 className="text-2xl text-red-500">Why Bure?</h2>
         <p>The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!</p>
         
-        <h2 className="pt-4 text-2xl text-red-500">Why Aqua?</h2>
+        <h2 className="mt-8 md:mt-4 text-2xl text-red-500">Why Aqua?</h2>
         <p>Aqua – water... This is a unique environment for our body. And our mission is to show the importance of water for life, health and sports!</p>
         
-        <h2 className="pt-4 text-2xl text-red-500">Why Academy?</h2>
+        <h2 className="mt-8 md:mt-4 text-2xl text-red-500">Why Academy?</h2>
         <p>An academic approach and teaching principles are used: from simple to complex, 
           improving skills (including participation in sports competitions), 
           taking into account the individual characteristics of each person, 
@@ -131,59 +131,141 @@ export default function Home() {
         <hr className="mt-20 border-black invisible lg:visible"></hr>
       </div>
       {/* <div className="w-4/5 h-1 bg-black"></div> */}
-
-      <div className="flex flex-col lg:flex-row w-full pl-16 pr-16 items-center">
-        <div className="flex flex-col justify-center p-0 pb-20 lg:pb-0 lg:pr-20 w-full lg:w-2/5 text-center lg:text-left">
-          <h2 className="text-lg">Our Program</h2>
-          <hr className="border-black"></hr>
-          <p className="">
-          Our mission is to use an academic approach, with proper teaching principals, to elevate all of our students and constantly improve their swimming skills.
-          From simple to complex, 
-          improving skills (including participation in sports competitions), 
-          taking into account the individual characteristics of each person, 
-          using a variety of methodological techniques, homework, joint work with parents, and much more.
-          </p>
-          <Link href="/mission" className="text-white hover:text-blue-700 self-center bg-blue-400 lg:self-start mt-8 max-w-max rounded-md border-2 border-blue-400 hover:border-2 hover:border-blue-700 p-2">
-            Learn More
-          </Link>
+      
+      <div className="bg-gradient-to-t from-pool-water from-60% to-white md:from-white">
+        <div className="flex flex-shrink lg:hidden h-full pt-12 pb-16">
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
         </div>
-        <div className="flex w-full lg:w-3/5 h-80 bg-blue-300 rounded-lg">
-          <Image src="/SwimComp.jpeg" width={300} height={300} className="object-cover w-full rounded-lg"/>
+
+        <div className="flex flex-col lg:flex-row w-full px-4 md:px-16 items-center">
+          <div className="flex flex-col justify-center px-4 pb-20 lg:pb-0 lg:pr-20 w-full lg:w-2/5 text-center lg:text-left">
+            <h2 className="text-lg text-white md:text-black">Our Program</h2>
+            <hr className="border-white md:border-black"></hr>
+            <p className="text-white md:text-black">
+            Our mission is to use an academic approach, with proper teaching principals, to elevate all of our students and constantly improve their swimming skills.
+            From simple to complex, 
+            improving skills (including participation in sports competitions), 
+            taking into account the individual characteristics of each person, 
+            using a variety of methodological techniques, homework, joint work with parents, and much more.
+            </p>
+            <Link href="/mission" className="text-pool-water md:text-white md:hover:text-blue-700 self-center bg-white md:bg-blue-400 lg:self-start mt-8 max-w-max rounded-md border-2 md:border-blue-400 hover:border-2 md:hover:border-blue-700 p-2">
+              Learn More
+            </Link>
+          </div>
+          <div className="flex w-full lg:w-3/5 h-auto bg-blue-300 rounded-lg">
+            <Image src="/SwimComp.jpeg" width={300} height={300} className="object-cover w-full rounded-lg"/>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row w-full pt-40 pl-16 pr-16 pb-40 items-center">
-        <div className="flex flex-col justify-center w-full text-center pb-20 lg:hidden">
-          <h2 className="text-lg">Meet the Team</h2>
-          <hr className="border-black"></hr>
-          <p>
-          The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!
-          They are fully dedicated to their craft and are passionate about teaching swimming to all ages and abilities.
-          Natalia and Vladimir work together to foster a community of swimmers who are confident in the water and love swimming.
-          </p>
-          <Link href="/about" className="text-white hover:text-blue-700 self-center bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 border-blue-400 hover:border-2 hover:border-blue-700 p-2">
-            Learn More
-          </Link>
-        </div>
-        <div className="flex w-full lg:w-3/5 h-72 bg-blue-300 rounded-lg">
-          <Image src="/NataliaTeachingKid2.png" width={300} height={300} className="hidden md:flex w-full md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
-          <Image src="/Natalia&Vladimir.jpg" width={300} height={300} className="w-full md:hidden md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
-          <Image src="/VladimirTeachingKid.jpg" width={300} height={300} className="hidden md:flex w-1/2 rounded-tr-lg rounded-br-lg"/>
+      <div className="bg-gradient-to-b from-pool-water from-60% to-white md:from-white">
+
+        <div className="flex flex-shrink lg:hidden h-full pt-16">
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                      <div className="bg-black h-6 w-1"></div>
+                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
         </div>
 
-        <div className="hidden lg:flex lg:flex-col justify-center pl-20 w-2/5 text-right">
-          <h2 className="text-lg">Meet the Team</h2>
-          <hr className="border-black"></hr>
-          <p>
-          The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!
-          They are fully dedicated to their craft and are passionate about teaching swimming to all ages and abilities.
-          Natalia and Vladimir work together to foster a community of swimmers who are confident in the water and love swimming.
-          </p>
-          <Link href="/about" className="text-white hover:text-blue-700 self-center bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 border-blue-400 hover:border-2 hover:border-blue-700 p-2">
-            Learn More
-          </Link>
-        </div>
+        <div className="flex flex-col lg:flex-row w-full pt-24 px-4 md:px-16 pb-24 items-center">
+          <div className="flex flex-col justify-center w-full text-center pb-20 lg:hidden">
+            <h2 className="text-lg text-white md:text-black">Meet the Team</h2>
+            <hr className="border-white md:border-black"></hr>
+            <p className="text-white md:text-black">
+            The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!
+            They are fully dedicated to their craft and are passionate about teaching swimming to all ages and abilities.
+            Natalia and Vladimir work together to foster a community of swimmers who are confident in the water and love swimming.
+            </p>
+            <Link href="/about" className="text-pool-water md:text-white md:hover:text-blue-700 self-center bg-white md:bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 md:border-blue-400 hover:border-2 md:hover:border-blue-700 p-2">
+              Learn More
+            </Link>
+          </div>
+          <div className="flex w-full lg:w-3/5 h-auto bg-blue-300 rounded-lg">
+            <Image src="/NataliaTeachingKid2.png" width={300} height={300} className="hidden md:flex w-full md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
+            <Image src="/Natalia&Vladimir.jpg" width={300} height={300} className="w-full md:hidden md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
+            <Image src="/VladimirTeachingKid.jpg" width={300} height={300} className="hidden md:flex w-1/2 rounded-tr-lg rounded-br-lg"/>
+          </div>
 
+          <div className="hidden lg:flex lg:flex-col justify-center pl-20 w-2/5 text-right">
+            <h2 className="text-lg">Meet the Team</h2>
+            <hr className="border-black"></hr>
+            <p>
+            The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!
+            They are fully dedicated to their craft and are passionate about teaching swimming to all ages and abilities.
+            Natalia and Vladimir work together to foster a community of swimmers who are confident in the water and love swimming.
+            </p>
+            <Link href="/about" className="text-white hover:text-blue-700 self-center bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 border-blue-400 hover:border-2 hover:border-blue-700 p-2">
+              Learn More
+            </Link>
+          </div>
+        </div>
+        
+        <div className="flex flex-shrink lg:hidden h-full pb-16">
+                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+                    <div className="bg-black h-6 w-1"></div>
+                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
+        </div>
       </div>
 
     </main>
