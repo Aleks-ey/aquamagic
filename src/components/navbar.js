@@ -82,22 +82,22 @@ const Navbar = () => {
                     <nav className="md:hidden mt-2">
                         <ul className="flex flex-col space-y-2">
                             <li>
-                                <Link href="/" className="block py-1 px-2 hover:text-blue-600">
+                                <Link href="/" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
                                     Home
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/about" className="block py-1 px-2 hover:text-blue-600">
+                                <Link href="/about" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
                                     About Us
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/location" className="block py-1 px-2 hover:text-blue-600">
+                                <Link href="/location" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
                                     Location
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/schedule" className="block py-1 px-2 hover:text-blue-600">
+                                <Link href="/schedule" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
                                     Schedule
                                 </Link>
                             </li>
@@ -112,12 +112,12 @@ const Navbar = () => {
                                 </Link>
                             </li> */}
                             <li>
-                                <Link href="/contact" className="block py-1 px-2 hover:text-blue-600">
+                                <Link href="/contact" className="block py-1 px-2 hover:text-blue-600"> onClick={toggleMobileMenu}
                                     Contact Us
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/registration" className="block py-1 px-2 hover:text-blue-600">
+                                <Link href="/registration" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
                                     Register Now
                                 </Link>
                             </li>
