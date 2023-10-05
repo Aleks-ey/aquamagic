@@ -6,7 +6,7 @@ const Schedule = () => {
             <div className="flex bg-gradient-to-br from-pool-water to-white w-11/12 h-auto rounded-md">
                 
                 <Image src="/ScheduleOct23.png" width="1000" height="1000" className="hidden md:block w-full h-full rounded-md"/>
-                <Image src="/Schedule.png" width="1000" height="200" className="md:hidden w-full rounded-md"/>
+                <Image src="/ScheduleOct23.png" width="1000" height="200" className="md:hidden w-full rounded-md"/>
                 {/* <div className="grid grid-cols-7 gap-4 w-11/12 mx-auto mt-12 mb-12 font-sans">
                     <div className="col-span-1 bg-gray-200 p-2 text-center font-bold">
                         Sun

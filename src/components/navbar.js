@@ -112,7 +112,7 @@ const Navbar = () => {
                                 </Link>
                             </li> */}
                             <li>
-                                <Link href="/contact" className="block py-1 px-2 hover:text-blue-600"> onClick={toggleMobileMenu}
+                                <Link href="/contact" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
                                     Contact Us
                                 </Link>
                             </li>
