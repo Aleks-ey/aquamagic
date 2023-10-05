@@ -1,13 +1,21 @@
 import Image from "next/image";
 
 const Location = () => {
+    if(document.getWindowWidth < 768) {
+        document.getElementById("maps").className = "phone_maps";
+    }
+    else {
+        document.getElementById("maps").className = "desktop_maps";
+    }
+
     return (
         <div className="flex flex-col md:flex-row pt-4 mt-20 md:mt-24 mb-40 bg-white md:bg-gradient-to-b from-pool-water to-white min-h-screen justify-center">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1753.7093445627595!2d-104.81802723961455!3d39.693305311268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c6296948f5467%3A0xc025ed099572b125!2sGateway%20High%20School!5e0!3m2!1sen!2sus!4v1693242618073!5m2!1sen!2sus" 
                 width="auto" height="auto" allowFullScreen loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                className="maps md:rounded-md">
+                className="maps md:rounded-md"
+                id="maps">
             </iframe>
 
             <div className="h-auto w-0.1 bg-gray-400 ml-12"></div>
