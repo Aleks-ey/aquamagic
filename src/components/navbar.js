@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from 'react';
-
 import 'font-awesome/css/font-awesome.min.css';
 
 const Navbar = () => {
@@ -14,7 +13,7 @@ const Navbar = () => {
 
     return (
         <header className="fixed top-0 left-0 w-full z-50 bg-white text-black">
-            <div className=" px-6 py-2 md:px-4 lg:px-14">
+            <div className="px-6 py-2 md:px-4 lg:px-14">
                 <div className="flex items-center w-full justify-between">
                     {/* Logo and title */}
                     <div className="flex items-center">
@@ -52,35 +51,48 @@ const Navbar = () => {
                         <Link href="/location" className="text-blue-900 hover:text-blue-600">
                             Location
                         </Link>
-                        <Link href="/schedule" className="text-blue-900 hover:text-blue-600">
-                            Schedule
-                        </Link>
-                        {/* <Link href="/programmes" className="hover:text-blue-600">
-                            Programmes
-                        </Link> */}
+
+                        {/* Dropdown container */}
+                        <div className="schedule_dropdown relative">
+                            <Link href="/schedule" className="text-blue-900 hover:text-blue-600 cursor-pointer">
+                                Schedule
+                            </Link>
+                            <div className="dropdown-content hidden absolute left-0 bg-white shadow-md z-10">
+                                <Link href="/calendar" className="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+                                    Calendar
+                                </Link>
+                                <Link href="/events" className="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+                                    Events
+                                </Link>
+                            </div>
+                        </div>
+
                         <Link href="/contact" className="text-blue-900 hover:text-blue-600">
                             Contact Us
                         </Link>
-                        
                     </nav>
-                        
-                    <Link href="/registration" className="hidden md:flex p-2 ml-3 text-white hover:text-black bg-sky-500 snap-end rounded-md">
-                        Register Now
+
+                    <Link href="/registration" className="hidden md:flex p-2 ml-3 text-white bg-pool-water hover:text-pool-water hover:border-pool-water hover:bg-white hover:border-2  snap-end rounded-md">
+                    Register Now
                     </Link>
+
 
                     {/* Hamburger menu button */}
                     <button
                     className="ml-auto md:hidden focus:outline-none"
                     onClick={toggleMobileMenu}
                     >
-                        <i className="fas fa-bars not-italic"></i>
+                        <i className="fa fa-solid fa-bars"></i>
                     </button>
                 </div>
             
                 {/* Mobile navigation */}
+                
+            </div>
+            <div>
                 {isMobileMenuOpen && (
-                    <nav className="md:hidden mt-2">
-                        <ul className="flex flex-col space-y-2">
+                    <nav className="md:hidden mt-2 py-10 border-2 bg-gradient-to-b from-white to-blue-300">
+                        <ul className="flex flex-col space-y-4 text-center text-2xl">
                             <li>
                                 <Link href="/" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
                                     Home
@@ -101,16 +113,16 @@ const Navbar = () => {
                                     Schedule
                                 </Link>
                             </li>
-                            {/* <li>
-                                <Link href="/programmes" className="block py-1 px-2 hover:text-blue-600">
-                                    Programmes
+                            <li>
+                                <Link href="/calendar" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
+                                    Calendar
                                 </Link>
-                            </li> */}
-                            {/* <li>
-                                <Link href="/services" className="block py-1 px-2 hover:text-blue-600">
-                                    Services
+                            </li>
+                            <li>
+                                <Link href="/events" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
+                                    Events
                                 </Link>
-                            </li> */}
+                            </li>
                             <li>
                                 <Link href="/contact" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
                                     Contact Us
@@ -125,7 +137,18 @@ const Navbar = () => {
                     </nav>
                 )}
             </div>
+            <style jsx>{`
+                /* Desktop navigation dropdown styles */
+                .group-hover:block {
+                display: none;
+                }
+
+                .schedule_container:hover .group-hover:block {
+                display: block;
+                }
+            `}</style>
         </header>
+        
     );
 }
 
