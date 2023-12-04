@@ -101,12 +101,12 @@ function Schedule() {
                 </div>
             </div>
             <div className='flex flex-col w-full'>
-                <div className='mb-12'>
+                <div className='mb-12 mx-auto'>
                     <p className='text-2xl font-semibold text-center text-gray-400'>
                         Find a saveable copy of the schedule below
                     </p>
                 </div>
-                <Image src='/BureAquaDec2.jpg' width='1000' height='450'></Image>
+                <Image className='self-center' src='/BureAquaDec2.jpg' width='1000' height='450'></Image>
             </div>
         </div>
     );
