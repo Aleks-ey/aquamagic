@@ -1,0 +1,97 @@
+.calendar-container {
+    max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+    .calendar-container {
+        max-width: 400px;
+        border: 1px solid #ddd;
+    }
+}
+
+.lg-calendar-container {
+    border: 1px solid #ddd;
+}
+
+@media screen and (max-width: 768px) {
+    .lg-calendar-container {
+        border: none;
+    }
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+}
+
+.day-label,
+.day-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.day-label {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.day-cell {
+    background-color: #fff;
+    height: 50px;
+}
+
+.day-cell.outside {
+    color: #aaa;
+}
+
+.day-cell.selected {
+    border: 2px solid #2298FF;
+}
+
+.cevents-list {
+    padding-left: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .cevents-list {
+        margin-top: 20px;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+    }
+}
+
+.cevent-item {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.cevent-item:last-child {
+    margin-bottom: 0;
+}
+
+.cevent-desc {
+    overflow-wrap: anywhere;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    margin: 2px;
+    border-radius: 50%;
+    margin-top: 5px;
+}
