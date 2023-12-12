@@ -50,3 +50,7 @@ body {
 .dropdown-content {
   transform: translateX(-10px);
 }
+
+.test {
+  width: 100%;
+}
