@@ -94,6 +94,8 @@ export default function Registration() {
         sundayAvailability: ''
     });
 
+    const [submissionStatus, setSubmissionStatus] = useState(null);
+
     // Handle form input changes
     const handleChange = (e, section, index) => {
         if (section) {
@@ -135,24 +137,28 @@ export default function Registration() {
                 .eq('email', formData.email)
                 .eq('home_address', formData.homeAddress);
 
-            console.log('registrantData:', registrantData);
             const registrantId = registrantData[0].registrant_id;
     
             // Insert into 'guardians' table
             let guardianIds = [];
             for (const guardian of formData.guardians) {
-                const {data: guardianResponseData, error: guardianError } = await supabase
-                    .from('emergency_contacts')
-                    .insert([{
-                        registrant_id: registrantId,
-                        first_name: guardian.firstName,
-                        last_name: guardian.lastName,
-                        phone: guardian.phone,
-                        email: guardian.email,
-                        relation: guardian.relation
-                    }]);
-                if (guardianError) throw guardianError;
-                guardianIds.push(guardianResponseData.contact_id);
+                // Check if the guardian entry is not empty
+                if (guardian.firstName || guardian.lastName || guardian.phone || guardian.email || guardian.relation) {
+                    const {data: guardianResponseData, error: guardianError } = await supabase
+                        .from('emergency_contacts')
+                        .insert([{
+                            registrant_id: registrantId,
+                            first_name: guardian.firstName,
+                            last_name: guardian.lastName,
+                            phone: guardian.phone,
+                            email: guardian.email,
+                            relation: guardian.relation
+                        }]);
+                    if (guardianError) throw guardianError;
+                    // Assuming guardianResponseData contains contact_id, push it to the guardianIds array
+                    // guardianIds.push(guardianResponseData.contact_id);
+                }
+                // If the guardian is empty, it skips the insertion.
             }
     
             // Insert into 'medical_information' table
@@ -180,12 +186,12 @@ export default function Registration() {
                 observations_13_16: formData.observations_13_16Checked ? formData.observations_13_16 : null,
                 observations_17_up: formData.observations_17_upChecked ? formData.observations_17_up : null,
             };            
-            const {medicalResponeData, error: medicalError } = await supabase
+            const {medicalResponseData, error: medicalError } = await supabase
                 .from('medical_information')
                 .insert([medicalData]);
             if (medicalError) throw medicalError;
 
-            const medicalInfoId = medicalDataResponse.medical_info_id;
+            // const medicalInfoId = medicalResponseData.medical_info_id;
     
             // Insert into 'schedules' table
             const scheduleData = {
@@ -203,27 +209,35 @@ export default function Registration() {
                 .insert([scheduleData]);
             if (scheduleError) throw scheduleError;
 
-            const scheduleId = scheduleResponseData.schedule_id;
+            // const scheduleId = scheduleResponseData.schedule_id;
 
-            // Insert guradianIds, medicalInfoId, and scheduleId into 'registrants' table
-            // const {registrantResponseData, error: registrantError2 } = await supabase
-            //     .from('registrants')
-            //     .update({
-            //         emergency_contact_1_id: guardianIds[0],
-            //         emergency_contact_2_id: guardianIds[1],
-            //         emergency_contact_3_id: guardianIds[2],
-            //         medical_info_id: medicalInfoId,
-            //         schedule_id: scheduleId
-            //     })
-            //     .eq('registrant_id', registrantId);
-            // if (registrantError2) throw registrantError2;
-    
-            // Form submission successful
             console.log('Form submitted successfully');
+            setSubmissionStatus('success');
         } catch (error) {
             console.error('Error submitting form:', error);
+            setSubmissionStatus('error');
         }
     }
+
+    // Confirmation popup component
+    function ConfirmationPopup({ status, onClose }) {
+        return (
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-700 bg-opacity-50 z-10">
+                <div className="bg-white p-5 rounded-md text-center">
+                    {status === 'success' && <p>Form submitted successfully!</p>}
+                    {status === 'error' && <p>Error submitting form. Please try again.</p>}
+                    <button onClick={onClose} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Close</button>
+                </div>
+            </div>
+        );
+    }  
+    
+    // Modify the onClose function in your main component
+    const handleClose = () => {
+        setSubmissionStatus(null);
+        window.scrollTo(0, 0); // Scroll to the top of the page
+    };
+
     
     return (
         <div className='mt-32 mb-10 flex flex-col justify-center text-center'>
@@ -557,7 +571,6 @@ export default function Registration() {
                     ))}
                 </table>
 
-
                 {/* Schedule fields */}
                 <table>
                     <thead>
@@ -679,6 +692,8 @@ export default function Registration() {
                     <button type="submit" className='w-48 mt-16 p-2 border-pool-water border-2 rounded-md text-pool-water hover:text-white hover:bg-pool-water'>Submit</button>
                 </div>
             </form>
+            {/* Conditional Rendering of Confirmation Popup */}
+            {submissionStatus && <ConfirmationPopup status={submissionStatus} onClose={handleClose} />}
         </div>
     );
 }
