@@ -45,7 +45,7 @@ function EventItem({ event }) {
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
     return (
-        <div className="event-item flex flex-row">
+        <div className="event-item flex flex-col md:flex-row">
             <div className="date-box flex flex-col">
                 <div>
                     {months[new Date(event.date).getMonth()]}
@@ -61,7 +61,7 @@ function EventItem({ event }) {
                     <span className="event-timestamp">{formatStandardTime(event.end_time)}</span>
                     </div>
                 </div>
-                <div className='event-description flex'>
+                <div className='event-description flex mt-2'>
                     <p>{event.description}</p>
                 </div>
             </div>

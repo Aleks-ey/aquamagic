@@ -95,6 +95,8 @@ export default function Registration() {
     });
 
     const [submissionStatus, setSubmissionStatus] = useState(null);
+    const [showExistingRegistrantPopup, setShowExistingRegistrantPopup] = useState(false);
+    const [existingRegistrant, setExistingRegistrant] = useState(null);
 
     // Handle form input changes
     const handleChange = (e, section, index) => {
@@ -112,6 +114,22 @@ export default function Registration() {
         e.preventDefault();
     
         try {
+            // Check if registrant already exists in 'registrants' table
+            const { data: existingRegistrants, error: existingError } = await supabase
+                .from('registrants')
+                .select('*')
+                .eq('first_name', formData.firstName)
+                .eq('last_name', formData.lastName);
+
+            if (existingError) throw existingError;
+
+            if (existingRegistrants.length > 0) {
+                setExistingRegistrant(existingRegistrants[0]); // use the first result
+                setShowExistingRegistrantPopup(true);
+                return;
+
+            }
+
             // Insert into 'registrants' table
             const { error: registrantError } = await supabase
                 .from('registrants')
@@ -207,11 +225,9 @@ export default function Registration() {
             const {scheduleResponseData, error: scheduleError } = await supabase
                 .from('schedules')
                 .insert([scheduleData]);
+
             if (scheduleError) throw scheduleError;
 
-            // const scheduleId = scheduleResponseData.schedule_id;
-
-            console.log('Form submitted successfully');
             setSubmissionStatus('success');
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -230,14 +246,209 @@ export default function Registration() {
                 </div>
             </div>
         );
-    }  
+    }
+
+    // Popup about existing registrant, with option to update
+    function ExistingRegistrantPopup({ registrant, onClose, onUpdate }) {
+        return (
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-700 bg-opacity-50 z-10">
+                <div className="bg-white p-5 rounded-md text-center">
+                    <p>Registrant already exists in the database.</p>
+                    <p>Would you like to update the registrant's information?</p>
+                    <div className="flex justify-around">
+                        <button onClick={onUpdate} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Update</button>
+                        <button onClick={onClose} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Close</button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    async function handleUpdateExistingRegistrant() {
+        // Update the existing registrant
+        const { data: updatedRegistrant, error: updateError } = await supabase
+            .from('registrants')
+            .update({
+                first_name: formData.firstName,
+                last_name: formData.lastName,
+                date_of_birth: formData.dateOfBirth,
+                phone: formData.phone,
+                email: formData.email,
+                home_address: formData.homeAddress
+            })
+            .eq('registrant_id', existingRegistrant.registrant_id);
+
+        if (updateError) throw updateError;
+        
+        // Update the existing registrant's guardians
+        for (const guardian of formData.guardians) {
+            // Check if the guardian entry is not empty
+            if (guardian.firstName || guardian.lastName || guardian.phone || guardian.email || guardian.relation) {
+                const {data: guardianResponseData, error: guardianError } = await supabase
+                    .from('emergency_contacts')
+                    .update({
+                        first_name: guardian.firstName,
+                        last_name: guardian.lastName,
+                        phone: guardian.phone,
+                        email: guardian.email,
+                        relation: guardian.relation
+                    })
+                    .eq('contact_id', guardian.contact_id);
+                if (guardianError) throw guardianError;
+            }
+        }
+
+        // Update the existing registrant's medical information
+        const medicalData = {
+            main_health_complaints: formData.main_health_complaintsChecked ? formData.main_health_complaints : null,
+            disability: formData.disabilityChecked ? formData.disability : null,
+            congenital_malformations: formData.congenital_malformationsChecked ? formData.congenital_malformations : null,
+            genetic_disorders: formData.genetic_disordersChecked ? formData.genetic_disorders : null,
+            epilepsy: formData.epilepsyChecked ? formData.epilepsy : null,
+            cardiovascular_diseases: formData.cardiovascular_diseasesChecked ? formData.cardiovascular_diseases : null,
+            mental_problems: formData.mental_problemsChecked ? formData.mental_problems : null,
+            conditions_after_injury_surgery: formData.conditions_after_injury_surgeryChecked ? formData.conditions_after_injury_surgery : null,
+            depression_anxiety: formData.depression_anxietyChecked ? formData.depression_anxiety : null,
+            behavioral_problems: formData.behavioral_problemsChecked ? formData.behavioral_problems : null,
+            medication: formData.medicationChecked ? formData.medication : null,
+            surgery: formData.surgeryChecked ? formData.surgery : null,
+            trauma: formData.traumaChecked ? formData.trauma : null,
+            other_medical_conditions: formData.other_medical_conditionsChecked ? formData.other_medical_conditions : null,
+            allergy: formData.allergyChecked ? formData.allergy : null,
+            observations_birth_1: formData.observations_birth_1Checked ? formData.observations_birth_1 : null,
+            observations_2_3: formData.observations_2_3Checked ? formData.observations_2_3 : null,
+            observations_4_7: formData.observations_4_7Checked ? formData.observations_4_7 : null,
+            observations_8_12: formData.observations_8_12Checked ? formData.observations_8_12 : null,
+            observations_13_16: formData.observations_13_16Checked ? formData.observations_13_16 : null,
+            observations_17_up: formData.observations_17_upChecked ? formData.observations_17_up : null,
+        };
+
+        const {medicalResponseData, error: medicalError } = await supabase
+            .from('medical_information')
+            .update(medicalData)
+            .eq('medical_info_id', existingRegistrant.registrant_id);
+
+        if (medicalError) throw medicalError;
+
+        // Update the existing registrant's schedule
+        const scheduleData = {
+            monday_availability: formData.mondayAvailability,
+            tuesday_availability: formData.tuesdayAvailability,
+            wednesday_availability: formData.wednesdayAvailability,
+            thursday_availability: formData.thursdayAvailability,
+            friday_availability: formData.fridayAvailability,
+            saturday_availability: formData.saturdayAvailability,
+            sunday_availability: formData.sundayAvailability,
+        };
+        const {scheduleResponseData, error: scheduleError } = await supabase
+            .from('schedules')
+            .update(scheduleData)
+            .eq('schedule_id', existingRegistrant.registrant_id);
+        if (scheduleError) throw scheduleError;
+
+        setSubmissionStatus('success');
+        setShowExistingRegistrantPopup(false);
+    };
     
-    // Modify the onClose function in your main component
+    // Close confirmation popup
     const handleClose = () => {
         setSubmissionStatus(null);
+        setShowExistingRegistrantPopup(false);
+
+        // Reset form data
+        setFormData({
+            // Registrant fields
+            lastName: '',
+            firstName: '',
+            dateOfBirth: '',
+            phone: '',
+            email: '',
+            homeAddress: '',
+            city: '',
+            zipCode: '',
+
+            // Guardian fields
+            guardians: [
+                { lastName: '', firstName: '', relation: '', phone: '', email: '' },
+                { lastName: '', firstName: '', relation: '', phone: '', email: '' },
+                { lastName: '', firstName: '', relation: '', phone: '', email: '' }
+            ],
+
+            // Medical information fields
+            mainHealthComplaints: '',
+            disability: '',
+            congenitalMalformations: '',
+            geneticDisorders: '',
+            epilepsy: '',
+            cardiovascularDiseases: '',
+            mentalProblems: '',
+            conditionsAfterInjurySurgery: '',
+            depressionAnxiety: '',
+            behavioralProblems: '',
+            medication: '',
+            surgery: '',
+            trauma: '',
+            otherMedicalConditions: '',
+            allergy: '',
+            observationsBirth1: '',
+            observations23: '',
+            observations47: '',
+            observations812: '',
+            observations1316: '',
+            observations17Up: '',
+            main_health_complaintsChecked: false,
+            main_health_complaintsUnchecked: false,
+            disabilityChecked: false,
+            disabilityUnchecked: false,
+            congenital_malformationsChecked: false,
+            congenital_malformationsUnchecked: false,
+            genetic_disordersChecked: false,
+            genetic_disordersUnchecked: false,
+            epilepsyChecked: false,
+            epilepsyUnchecked: false,
+            cardiovascular_diseasesChecked: false,
+            cardiovascular_diseasesUnchecked: false,
+            mental_problemsChecked: false,
+            mental_problemsUnchecked: false,
+            conditions_after_injury_or_surgeryChecked: false,
+            conditions_after_injury_or_surgeryUnchecked: false,
+            depression_anxietyChecked: false,
+            depression_anxietyUnchecked: false,
+            behavioral_problemsChecked: false,
+            behavioral_problemsUnchecked: false,
+            medicationChecked: false,
+            medicationUnchecked: false,
+            surgeryChecked: false,
+            surgeryUnchecked: false,
+            traumaChecked: false,
+            traumaUnchecked: false,
+            other_medical_conditionsChecked: false,
+            other_medical_conditionsUnchecked: false,
+            observations_birth_1Checked: false,
+            observations_birth_1Unchecked: false,
+            observations_2_3Checked: false,
+            observations_2_3Unchecked: false,
+            observations_4_7Checked: false,
+            observations_4_7Unchecked: false,
+            observations_8_12Checked: false,
+            observations_8_12Unchecked: false,
+            observations_13_16Checked: false,
+            observations_13_16Unchecked: false,
+            observations_17_upChecked: false,
+            observations_17_upUnchecked: false,
+
+            // Schedule fields
+            mondayAvailability: '',
+            tuesdayAvailability: '',
+            wednesdayAvailability: '',
+            thursdayAvailability: '',
+            fridayAvailability: '',
+            saturdayAvailability: '',
+            sundayAvailability: ''
+        });
+
         window.scrollTo(0, 0); // Scroll to the top of the page
     };
-
     
     return (
         <div className='mt-32 mb-10 flex flex-col justify-center text-center'>
@@ -694,6 +905,7 @@ export default function Registration() {
             </form>
             {/* Conditional Rendering of Confirmation Popup */}
             {submissionStatus && <ConfirmationPopup status={submissionStatus} onClose={handleClose} />}
+            {showExistingRegistrantPopup && <ExistingRegistrantPopup registrant={existingRegistrant} onClose={handleClose} onUpdate={handleUpdateExistingRegistrant} />}
         </div>
     );
 }
