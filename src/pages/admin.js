@@ -1,456 +1,249 @@
-// pages/admin.js
 import { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import DatePicker from "react-multi-date-picker";
 
 export default function Admin() {
-    // ------------------- add event section -------------------
-    const [addDate, setAddDate] = useState('');
-    const [addTitle, setAddTitle] = useState('');
-    const [addDescription, setAddDescription] = useState('');
-    const [addLocation, setAddLocation] = useState('');
-    const [addCategory, setAddCategory] = useState('');
-    const [addIsAllDay, setAddIsAllDay] = useState(false);
-    const [addStartTime, setAddStartTime] = useState('');
-    const [addEndTime, setAddEndTime] = useState('');
+    // State for event details
+    const [dates, setDates] = useState([]);
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [location, setLocation] = useState('');
+    const [coach, setCoach] = useState('');
+    const [category, setCategory] = useState('event');
+    const [isAllDay, setIsAllDay] = useState(false);
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [selectedEventId, setSelectedEventId] = useState(null); // For editing
+    const [eventsByDate, setEventsByDate] = useState([]); // For title suggestions
 
-    // add event
-    const handleAddEvent = async (e) => {
-        e.preventDefault();
-
-        const { data, error } = await supabase
-            .from('calendar')
-            .insert([{
-                date: addDate,
-                title: addTitle,
-                description: addDescription,
-                location: addLocation,
-                category: addCategory,
-                is_all_day: addIsAllDay,
-                start_time: addStartTime,
-                end_time: addEndTime
-            }]);
-
-        if (error) {
-            console.error("Error inserting event:", error);
-            // Handle the error in a user-friendly way
-        } else {
-            // Clear the input fields after successful insert
-            setAddDate('');
-            setAddTitle('');
-            setAddDescription('');
-            setAddLocation('');
-            setAddCategory('');
-            setAddIsAllDay(false);
-            setAddStartTime('');
-            setAddEndTime('');
-        }
-    }
-    // ------------------- ------------------- -------------------
-    // ------------------- edit event section -------------------
-    // State variables
-    const [editDate, setEditDate] = useState('');
-    const [editTitle, setEditTitle] = useState('');
-    const [editDescription, setEditDescription] = useState('');
-    const [editLocation, setEditLocation] = useState('');
-    const [editCategory, setEditCategory] = useState('');
-    const [editIsAllDay, setEditIsAllDay] = useState(false);
-    const [editStartTime, setEditStartTime] = useState('');
-    const [editEndTime, setEditEndTime] = useState('');
-    const [showSuggestions, setShowSuggestions] = useState(false);
-
-    // const [events, setEvents] = useState([]);
-    // const [editFormData, setEditFormData] = useState({ date: '', title: '', description: '', location: '', category: '', is_all_day: false, start_time: '', end_time: '' });
-    const [eventsByDate, setEventsByDate] = useState([]);
-    const [selectedEventId, setSelectedEventId] = useState('');
-
-    // Fetch events from the database
+    // Fetch events for title suggestions
     useEffect(() => {
         const fetchEvents = async () => {
-            if (editDate) {
-                const { data, error } = await supabase
-                    .from('calendar')
-                    .select('*')
-                    .eq('date', editDate);
+            const { data, error } = await supabase
+                .from('calendar')
+                .select('*')
+                .in('date', dates.map(date => date.format("YYYY-MM-DD")));
 
-                if (error) {
-                    console.error("Error fetching events:", error);
-                } else {
-                    setEventsByDate(data);
-                }
+            if (!error && data) {
+                setEventsByDate(data);
             }
         };
 
-        fetchEvents();
-    }, [editDate]);
-
-    // When the title input is focused or changed, show the suggestions
-    const handleTitleChange = (e) => {
-        setEditTitle(e.target.value);
-        setShowSuggestions(true);
-    };
-
-    // When a suggestion is clicked, set the title and hide suggestions
-    const handleSuggestionClick = (suggestedTitle) => {
-        setEditTitle(suggestedTitle);
-        setShowSuggestions(false);
-
-        const selectedEvent = eventsByDate.find(event => event.title === suggestedTitle);
-        if (selectedEvent) {
-            setSelectedEventId(selectedEvent.id);
-            setEditDescription(selectedEvent.description);
-            setEditLocation(selectedEvent.location);
-            setEditCategory(selectedEvent.category);
-            setEditIsAllDay(selectedEvent.is_all_day);
-            setEditStartTime(selectedEvent.start_time);
-            setEditEndTime(selectedEvent.end_time);
+        if (dates.length > 0) {
+            fetchEvents();
         }
-    };
+    }, [dates]);
 
-    // Handle title (event) selection
-    // const handleEventSelect = (e) => {
-    //     const eventId = e.target.value;
-    //     setSelectedEventId(eventId);
-    //     const selectedEvent = eventsByDate.find(event => event.id.toString() === eventId);
-    //     if (selectedEvent) {
-    //         setEditTitle(selectedEvent.title);
-    //         setEditDescription(selectedEvent.description);
-    //         setEditLocation(selectedEvent.location);
-    //         setEditCategory(selectedEvent.category);
-    //         setEditIsAllDay(selectedEvent.is_all_day);
-    //         setEditStartTime(selectedEvent.start_time);
-    //         setEditEndTime(selectedEvent.end_time);
-    //     }
-    // };
-
-    // Handle form change
-    // const handleFormChange = (e) => {
-    //     const { name, value, type, checked } = e.target;
-    //     setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
-    // };
-
-    // edit event
-    const handleEditEvent = async (e) => {
+    // Handle form submission
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { data, error } = await supabase
-            .from('calendar')
-            .update([{
-                title: editTitle,
-                description: editDescription,
-                location: editLocation,
-                category: editCategory,
-                is_all_day: editIsAllDay,
-                start_time: editStartTime,
-                end_time: editEndTime
-            }])
-            .match({ id: selectedEventId });
+        const event = {
+            title,
+            description,
+            location,
+            category,
+            is_all_day: isAllDay,
+            start_time: startTime,
+            end_time: endTime,
+            ...(category === 'schedule' && { coach }) // Add coach if category is 'schedule'
+        };
 
-        if (error) {
-            console.error("Error updating event:", error);
-        } else {
-            // Clear form and refresh events
-            setEditFormData({ date: '', title: '', description: '', location: '', category: '', is_all_day: false, start_time: '', end_time: '' });
-            setEvents(); // Refetch events to update the list
-        }
-    };
-    // ------------------- ------------------- -------------------
-    // ------------------- add multiple schedule events -------------------
-    const [multiDate, setMultiDate] = useState([]);
-    const [multiDateTitle, setMultiDateTitle] = useState('');
-    const [multiDateCoach, setMultiDateCoach] = useState('');
-    const [multiDateDescription, setMultiDateDescription] = useState('');
-    const [multiDateLocation, setMultiDateLocation] = useState('');
-    const [multiStartTime, setMultiStartTime] = useState('');
-    const [multiEndTime, setMultiEndTime] = useState('');
-
-    const handleAddMultiDateEvent = async (e) => {
-        e.preventDefault();
-    
-        for (let date of multiDate) {
+        if (selectedEventId) {
+            // Update existing event
             const { error } = await supabase
                 .from('calendar')
-                .insert([{
-                    date: date.format("YYYY-MM-DD"), // format date as needed
-                    title: multiDateTitle,
-                    coach: multiDateCoach,
-                    description: multiDateDescription,
-                    location: multiDateLocation,
-                    category: "schedule",
-                    is_all_day: false,
-                    start_time: multiStartTime,
-                    end_time: multiEndTime,
-                    // ...other fields
-                }]);
-    
+                .update(event)
+                .match({ id: selectedEventId });
+
             if (error) {
-                console.error("Error inserting multi-date event:", error);
-                break; // stop the loop if there's an error
+                console.error("Error updating event:", error);
+            }
+        } else {
+            // Add new event(s)
+            for (let date of dates) {
+                const { error } = await supabase
+                    .from('calendar')
+                    .insert([{ ...event, date: date.format("YYYY-MM-DD") }]);
+
+                if (error) {
+                    console.error("Error inserting event:", error);
+                    break; // stop the loop if there's an error
+                }
             }
         }
-    
-        // Clear form fields and state after successful insert
-        setMultiDate([]);
-        setMultiDateTitle('');
-        setMultiDateDescription('');
-        setMultiDateCoach('');
-        setMultiDateLocation('');
-        setMultiStartTime('');
-        setMultiEndTime('');
-        // Reset other form fields
-    };    
-    // ------------------- ------------------- -------------------    
+
+        // Clear form fields after successful insert/update
+        resetForm();
+    };
+
+    // Reset form fields
+    const resetForm = () => {
+        setDates([]);
+        setTitle('');
+        setDescription('');
+        setLocation('');
+        setCoach('');
+        setCategory('event');
+        setIsAllDay(false);
+        setStartTime('');
+        setEndTime('');
+        setSelectedEventId(null);
+    };
+
+    // Handle title selection from suggestions
+    const handleSuggestionClick = (event) => {
+        setSelectedEventId(event.id);
+        setTitle(event.title);
+        setDescription(event.description);
+        setLocation(event.location);
+        setCategory(event.category);
+        setIsAllDay(event.is_all_day);
+        setStartTime(event.start_time);
+        setEndTime(event.end_time);
+        setCoach(event.coach);
+    };
+
+    // Function to determine if the suggestions should be shown
+    const shouldShowSuggestions = () => {
+        return dates.length === 1;
+    };
+
+    // Function to change the button text based on title and selectedEventId
+    const getButtonText = () => {
+        if (selectedEventId) return 'Edit Event';
+        return title ? 'Add Event' : 'Select Date';
+    };
 
     return (
-        <div className='admin_container flex flex-col mt-28 items-center justify-center'>
-            <div className='flex flex-col md:flex-row gap-2'>
-                {/* add event */}
-                <div>
-                    <h1 className='text-2xl'>Add Single Event</h1>
-                    <form onSubmit={handleAddEvent} className='my-12'>
-                        <table className='table-fixed border-collapse'>
-                            <tbody>
-                                <tr>
-                                    <td className='border px-4 py-2'>Date:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="date" value={addDate} onChange={(e) => setAddDate(e.target.value)} required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Title:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="text" value={addTitle} onChange={(e) => setAddTitle(e.target.value)} required className='border-2 border-gray-400 w-full' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Description:</td>
-                                    <td className='border px-4 py-2'>
-                                        <textarea value={addDescription} onChange={(e) => setAddDescription(e.target.value)} required className='border-2 border-gray-400 w-full' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Location:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="text" value={addLocation} onChange={(e) => setAddLocation(e.target.value)} required className='border-2 border-gray-400 w-full' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Category:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="text" value={addCategory} onChange={(e) => setAddCategory(e.target.value)} required className='border-2 border-gray-400 w-full' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>All Day:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="checkbox" checked={addIsAllDay} onChange={(e) => setAddIsAllDay(e.target.checked)} />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Start Time:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="time" value={addStartTime} onChange={(e) => setAddStartTime(e.target.value)} required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>End Time:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="time" value={addEndTime} onChange={(e) => setAddEndTime(e.target.value)} required />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className='text-center mt-4'>
-                            <button type="submit" className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none'>Add Event</button>
-                        </div>
-                    </form>
+        <div className='admin_container flex flex-col my-28 items-center justify-center'>
+            <h1 className='text-2xl'>Add Events</h1>
+            <hr className="border-black w-1/4 self-center justify-center"/>
+            <form onSubmit={handleSubmit} className="w-full max-w-lg mt-4">
+                <table className="min-w-full divide-y divide-gray-500">
+                    <tbody className="bg-white divide-y divide-gray-500">
+                        {/* Date Picker */}
+                        <tr>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <label>Select Dates:</label>
+                            </td>
+                            <td className="px-6 py-4">
+                                <DatePicker 
+                                    value={dates} 
+                                    onChange={setDates} 
+                                    multiple
+                                    className="border border-black rounded-md" // Custom CSS class
+                                    style={{ width: '100%' }} // Inline style to match width with other inputs
+                                />
+                                {shouldShowSuggestions() && eventsByDate.map((event, index) => (
+                                    <div key={index} onClick={() => handleSuggestionClick(event)} className="cursor-pointer text-blue-600 hover:text-blue-800">
+                                        {event.title}
+                                    </div>
+                                ))}
+                            </td>
+                        </tr>
+                        
+                        {/* Category Dropdown */}
+                        <tr>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <label>Category:</label>
+                            </td>
+                            <td className="px-6 py-4">
+                                <select value={category} onChange={(e) => setCategory(e.target.value)} className="mt-1 block w-full py-2 px-3 border border-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="event">Event</option>
+                                    <option value="schedule">Schedule</option>
+                                    <option value="swim meet">Swim Meet</option>
+                                    <option value="meeting">Meeting</option>
+                                    <option value="deadline">Deadline</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        {/* Title Field */}
+                        <tr>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <label>Title:</label>
+                            </td>
+                            <td className="px-6 py-4">
+                                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="mt-1 block w-full py-2 px-3 border border-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                            </td>
+                        </tr>
+
+                        {/* Description Field */}
+                        <tr>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <label>Description:</label>
+                            </td>
+                            <td className="px-6 py-4">
+                                <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="mt-1 block w-full py-2 px-3 border border-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                            </td>
+                        </tr>
+
+                        {/* Location Field */}
+                        <tr>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <label>Location:</label>
+                            </td>
+                            <td className="px-6 py-4">
+                                <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} className="mt-1 block w-full py-2 px-3 border border-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                            </td>
+                        </tr>
+
+                        {/* Conditional Coach Field */}
+                        {category === 'schedule' && (
+                            <tr>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <label>Coach:</label>
+                                </td>
+                                <td className="px-6 py-4">
+                                    <input type="text" value={coach} onChange={(e) => setCoach(e.target.value)} className="mt-1 block w-full py-2 px-3 border border-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                                </td>
+                            </tr>
+                        )}
+
+                        {/* Start Time Field */}
+                        <tr>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <label>Start Time:</label>
+                            </td>
+                            <td className="px-6 py-4">
+                                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} disabled={isAllDay} className="mt-1 block w-full py-2 px-3 border border-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                            </td>
+                        </tr>
+
+                        {/* End Time Field */}
+                        <tr>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <label>End Time:</label>
+                            </td>
+                            <td className="px-6 py-4">
+                                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} disabled={isAllDay} className="mt-1 block w-full py-2 px-3 border border-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                            </td>
+                        </tr>
+
+                        {/* All Day Toggle */}
+                        <tr>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <label>All Day Event:</label>
+                            </td>
+                            <td className="px-6 py-4">
+                                <input type="checkbox" checked={isAllDay} onChange={(e) => setIsAllDay(e.target.checked)} className="mt-1" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div className="text-center mt-4">
+                    <button 
+                        type="submit" 
+                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none"
+                        disabled={!title && !selectedEventId} // Disable button if no title and not editing
+                    >
+                        {getButtonText()}
+                    </button>
                 </div>
-                {/* edit event */}
-                <div>
-                    <h1 className='text-2xl'>Edit Single Event</h1>
-                    <form onSubmit={handleEditEvent} className='my-12'>
-                        <table className='table-fixed border-collapse'>
-                            <tbody>
-                                <tr>
-                                    <td className='border px-4 py-2'>Date:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="date" value={editDate} onChange={(e) => setEditDate(e.target.value)} required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Title:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input 
-                                            type="text" 
-                                            value={editTitle} 
-                                            onChange={handleTitleChange} 
-                                            onFocus={() => setShowSuggestions(true)}
-                                            className='border-2 border-gray-400 w-full'
-                                            required 
-                                        />
-                                        {showSuggestions && (
-                                            <div className="suggestions">
-                                                {eventsByDate.map((event, index) => (
-                                                    <div key={index} onClick={() => handleSuggestionClick(event.title)}>
-                                                        {event.title}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Description:</td>
-                                    <td className='border px-4 py-2'>
-                                        <textarea value={editDescription} onChange={(e) => setEditDescription(e.target.value)} required className='border-2 border-gray-400 w-full' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Location:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="text" value={editLocation} onChange={(e) => setEditLocation(e.target.value)} required className='border-2 border-gray-400 w-full' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Category:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="text" value={editCategory} onChange={(e) => setEditCategory(e.target.value)} required className='border-2 border-gray-400 w-full' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>All Day:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="checkbox" checked={editIsAllDay} onChange={(e) => setEditIsAllDay(e.target.checked)} />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>Start Time:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="time" value={editStartTime} onChange={(e) => setEditStartTime(e.target.value)} required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className='border px-4 py-2'>End Time:</td>
-                                    <td className='border px-4 py-2'>
-                                        <input type="time" value={editEndTime} onChange={(e) => setEditEndTime(e.target.value)} required />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className='text-center mt-4'>
-                            <button type="submit" className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none'>Edit Event</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div>
-                {/* add multiple schedules events */}
-                <div>
-                    <h1 className='text-2xl'>Add Schedule Days</h1>
-                    <form onSubmit={handleAddMultiDateEvent} className='my-12'>
-                    <table className='table-fixed border-collapse'>
-                        <tbody>
-                            {/* Date Picker Field */}
-                            <tr>
-                                <td className='border px-4 py-2'>Select Dates:</td>
-                                <td className='border px-4 py-2'>
-                                    <DatePicker
-                                        value={multiDate}
-                                        onChange={setMultiDate}
-                                        multiple
-                                    />
-                                </td>
-                            </tr>
-
-                            {/* Title Field */}
-                            <tr>
-                                <td className='border px-4 py-2'>Title:</td>
-                                <td className='border px-4 py-2'>
-                                    <input 
-                                        type="text" 
-                                        value={multiDateTitle} 
-                                        onChange={(e) => setMultiDateTitle(e.target.value)} 
-                                        required 
-                                        className='border-2 border-gray-400 w-full'
-                                    />
-                                </td>
-                            </tr>
-
-                            {/* Coach Field */}
-                            <tr>
-                                <td className='border px-4 py-2'>Coach:</td>
-                                <td className='border px-4 py-2'>
-                                    <input 
-                                        type="text" 
-                                        value={multiDateCoach} 
-                                        onChange={(e) => setMultiDateCoach(e.target.value)} 
-                                        required 
-                                        className='border-2 border-gray-400 w-full'
-                                    />
-                                </td>
-                            </tr>
-
-                            {/* Description Field */}
-                            <tr>
-                                <td className='border px-4 py-2'>Description:</td>
-                                <td className='border px-4 py-2'>
-                                    <textarea 
-                                        value={multiDateDescription} 
-                                        onChange={(e) => setMultiDateDescription(e.target.value)}
-                                        className='border-2 border-gray-400 w-full'
-                                    />
-                                </td>
-                            </tr>
-
-                            {/* Location Field */}
-                            <tr>
-                                <td className='border px-4 py-2'>Location:</td>
-                                <td className='border px-4 py-2'>
-                                    <input 
-                                        type="text" 
-                                        value={multiDateLocation} 
-                                        onChange={(e) => setMultiDateLocation(e.target.value)}
-                                        className='border-2 border-gray-400 w-full'
-                                    />
-                                </td>
-                            </tr>
-
-                            {/* Start Time Field */}
-                            <tr>
-                                <td className='border px-4 py-2'>Start Time:</td>
-                                <td className='border px-4 py-2'>
-                                    <input 
-                                        type="time" 
-                                        value={multiStartTime} 
-                                        onChange={(e) => setMultiStartTime(e.target.value)} 
-                                        required 
-                                    />
-                                </td>
-                            </tr>
-
-                            {/* End Time Field */}
-                            <tr>
-                                <td className='border px-4 py-2'>End Time:</td>
-                                <td className='border px-4 py-2'>
-                                    <input 
-                                        type="time" 
-                                        value={multiEndTime} 
-                                        onChange={(e) => setMultiEndTime(e.target.value)} 
-                                        required 
-                                    />
-                                </td>
-                            </tr>
-
-                            {/* Add other necessary fields as per your requirements */}
-                        </tbody>
-                    </table>
-
-                    <div className='text-center mt-4'>
-                        <button type="submit" className='px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 focus:outline-none'>Add Schedule Days</button>
-                    </div>
-                </form>
-                </div>
-            </div>
+            </form>
         </div>
     );
 }
+

@@ -11,17 +11,24 @@ function Events() {
             oneWeekBefore.setDate(oneWeekBefore.getDate() - 7);
             let oneMonthAfter = new Date(currentDate);
             oneMonthAfter.setMonth(oneMonthAfter.getMonth() + 1);
+            let acceptedCategories = ['event', 'meeting', 'deadline', 'swim meet'];
 
             let { data, error } = await supabase
                 .from('calendar')
                 .select('*')
-                .eq('category', 'event')
+                .in('category', acceptedCategories)
                 .gte('date', oneWeekBefore.toISOString().split('T',1))
                 .lte('date', oneMonthAfter.toISOString().split('T',1));
 
             if (error) {
                 console.error('Error fetching events:', error);
             } else {
+                // Sort events by date and start time
+                data.sort((a, b) => {
+                    let dateTimeA = a.date + ' ' + a.start_time;
+                    let dateTimeB = b.date + ' ' + b.start_time;
+                    return new Date(dateTimeA) - new Date(dateTimeB);
+                });
                 setEvents(data);
             }
         }
