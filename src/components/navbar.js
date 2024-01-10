@@ -157,15 +157,15 @@ const Navbar = () => {
             {/* Donate Popup */}
             {isDonatePopupOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-5 rounded-lg justify-center text-center text-xl w-11/12 md:w-1/2">
+                    <div className="bg-white p-5 rounded-lg justify-center text-center text-lg w-11/12 md:w-1/2">
                         <h2 className="font-bold text-xl">Donations and Sponsors</h2>
                         <p>
-                            Thank you for considering a donation to the Bure-Aqua Academy! Your generous support plays a vital role in nurturing the talents and dreams of our dedicated swimmers.
+                            Thank you for considering a donation to the Bure-Aqua Academy! Your generous support plays a vital role in the development of our dedicated swimmers and our future projects for kids.
                         </p>
                         <br/>
                         <p>
-                            Every contribution you make is directly invested in our team's growth and success. Your donations are essential for funding various aspects of our program, including:
-                            Pool rental fees, Equipment and supplies, Swim Team Support, Swim Competitions, and Uniforms.
+                            Every contribution you make is directly invested in our team's growth and success. Your donations are essential for funding various aspects of our team, including:
+                            Pool rental fees, Equipment and supplies, Swim Competitions, Uniforms, and more.
                         </p>
                         <br/>
                         <p>
@@ -173,7 +173,11 @@ const Navbar = () => {
                         </p>
                         <br/>
                         <p><strong>Recipient:</strong> Bure-Aqua Academy</p>
-                        <p><strong>Phone Number:</strong>(720)363-1019</p>
+                        <p><strong>Phone Number:</strong> (720) 363-1019</p>
+                        <br/>
+                        <p>
+                            If you have some questions about donations or being a sponsor, please send your contact information to aquamagicnb@gmail.com
+                        </p>
                         <br/>
                         <button className="px-4 py-1 text-pool-water hover:text-white hover:bg-pool-water border-2 border-pool-water" onClick={toggleDonatePopup}>Close</button>
                     </div>
