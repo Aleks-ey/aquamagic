@@ -6,9 +6,14 @@ import 'font-awesome/css/font-awesome.min.css';
 const Navbar = () => {
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isDonatePopupOpen, setIsDonatePopupOpen] = useState(false);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const toggleDonatePopup = () => {
+        setIsDonatePopupOpen(!isDonatePopupOpen);
     };
 
     return (
@@ -72,10 +77,14 @@ const Navbar = () => {
                         </Link>
                     </nav>
 
-                    <Link href="/registration" className="hidden md:flex p-2 ml-3 text-white bg-pool-water hover:text-pool-water hover:border-pool-water hover:bg-white hover:border-2  snap-end rounded-md">
-                    Register Now
+                    <Link href="/registration" className="hidden md:flex p-2 ml-3 text-white bg-pool-water hover:text-pool-water hover:bg-white border-2 border-pool-water snap-end rounded-md">
+                        Register Now
                     </Link>
-
+                    <button className="hidden md:flex p-2 ml-3 text-white bg-pool-water hover:text-pool-water hover:bg-white border-2 border-pool-water snap-end rounded-md"
+                        onClick={toggleDonatePopup}
+                    >
+                        Donate
+                    </button>
 
                     {/* Hamburger menu button */}
                     <button
@@ -91,7 +100,7 @@ const Navbar = () => {
             </div>
             <div>
                 {isMobileMenuOpen && (
-                    <nav className="md:hidden mt-2 py-10 border-2 bg-gradient-to-b from-white to-blue-300">
+                    <nav className="md:hidden mt-12 py-10 border-2 h-screen bg-gradient-to-b from-white to-blue-300">
                         <ul className="flex flex-col space-y-4 text-center text-2xl">
                             <li>
                                 <Link href="/" className="block py-1 px-2 hover:text-blue-600" onClick={toggleMobileMenu}>
@@ -133,10 +142,43 @@ const Navbar = () => {
                                     Register Now
                                 </Link>
                             </li>
+                            <li>
+                                <a 
+                                    className="block py-1 px-2 hover:text-blue-600" 
+                                    onClick={() => { toggleMobileMenu(); toggleDonatePopup(); }}
+                                >
+                                    Donate
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 )}
             </div>
+            {/* Donate Popup */}
+            {isDonatePopupOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                    <div className="bg-white p-5 rounded-lg justify-center text-center text-xl w-11/12 md:w-1/2">
+                        <h2 className="font-bold text-xl">Donations and Sponsors</h2>
+                        <p>
+                            Thank you for considering a donation to the Bure-Aqua Academy! Your generous support plays a vital role in nurturing the talents and dreams of our dedicated swimmers.
+                        </p>
+                        <br/>
+                        <p>
+                            Every contribution you make is directly invested in our team's growth and success. Your donations are essential for funding various aspects of our program, including:
+                            Pool rental fees, Equipment and supplies, Swim Team Support, Swim Competitions, and Uniforms.
+                        </p>
+                        <br/>
+                        <p>
+                            For those who prefer a quick and convenient way to donate, we gladly accept contributions via Zelle. Please use the following details to make your donation:
+                        </p>
+                        <br/>
+                        <p><strong>Recipient:</strong> Bure-Aqua Academy</p>
+                        <p><strong>Phone Number:</strong>(720)363-1019</p>
+                        <br/>
+                        <button className="px-4 py-1 text-pool-water hover:text-white hover:bg-pool-water border-2 border-pool-water" onClick={toggleDonatePopup}>Close</button>
+                    </div>
+                </div>
+            )}
             <style jsx>{`
                 /* Desktop navigation dropdown styles */
                 .group-hover:block {
