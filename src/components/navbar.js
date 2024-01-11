@@ -157,7 +157,7 @@ const Navbar = () => {
             {/* Donate Popup */}
             {isDonatePopupOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white p-5 rounded-lg justify-center text-center text-lg w-11/12 md:w-1/2">
+                    <div className="bg-white p-5 rounded-lg justify-center text-center text-base md:text-lg w-11/12 md:w-1/2">
                         <h2 className="font-bold text-xl">Donations and Sponsors</h2>
                         <p>
                             Thank you for considering a donation to the Bure-Aqua Academy! Your generous support plays a vital role in the development of our dedicated swimmers and our future projects for kids.

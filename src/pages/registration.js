@@ -71,18 +71,18 @@ export default function Registration() {
         traumaUnchecked: false,
         other_medical_conditionsChecked: false,
         other_medical_conditionsUnchecked: false,
-        observations_birth_1Checked: false,
-        observations_birth_1Unchecked: false,
-        observations_2_3Checked: false,
-        observations_2_3Unchecked: false,
-        observations_4_7Checked: false,
-        observations_4_7Unchecked: false,
-        observations_8_12Checked: false,
-        observations_8_12Unchecked: false,
-        observations_13_16Checked: false,
-        observations_13_16Unchecked: false,
-        observations_17_upChecked: false,
-        observations_17_upUnchecked: false,
+        observations_from_birth_to_1_YOChecked: false,
+        observations_from_birth_to_1_YOUnchecked: false,
+        observations_from_2_to_3_YOChecked: false,
+        observations_from_2_to_3_YOUnchecked: false,
+        observations_from_4_to_7_YOChecked: false,
+        observations_from_4_to_7_YOUnchecked: false,
+        observations_from_8_to_12_YOChecked: false,
+        observations_from_8_to_12_YOUnchecked: false,
+        observations_from_13_to_16_YOChecked: false,
+        observations_from_13_to_16_YOUnchecked: false,
+        observations_17_and_upChecked: false,
+        observations_17_and_upUnchecked: false,
 
         // Schedule fields
         mondayAvailability: '',
@@ -197,12 +197,12 @@ export default function Registration() {
                 trauma: formData.traumaChecked ? formData.trauma : null,
                 other_medical_conditions: formData.other_medical_conditionsChecked ? formData.other_medical_conditions : null,
                 allergy: formData.allergyChecked ? formData.allergy : null,
-                observations_birth_1: formData.observations_birth_1Checked ? formData.observations_birth_1 : null,
-                observations_2_3: formData.observations_2_3Checked ? formData.observations_2_3 : null,
-                observations_4_7: formData.observations_4_7Checked ? formData.observations_4_7 : null,
-                observations_8_12: formData.observations_8_12Checked ? formData.observations_8_12 : null,
-                observations_13_16: formData.observations_13_16Checked ? formData.observations_13_16 : null,
-                observations_17_up: formData.observations_17_upChecked ? formData.observations_17_up : null,
+                observations_birth_1: formData.observations_from_birth_to_1_YOChecked ? formData.observations_from_birth_to_1_YO : null,
+                observations_2_3: formData.observations_from_2_to_3_YOChecked ? formData.observations_from_2_to_3_YO : null,
+                observations_4_7: formData.observations_from_4_to_7_YOChecked ? formData.observations_from_4_to_7_YO : null,
+                observations_8_12: formData.observations_from_8_to_12_YOChecked ? formData.observations_from_8_to_12_YO : null,
+                observations_13_16: formData.observations_from_13_to_16_YOChecked ? formData.observations_from_13_to_16_YO : null,
+                observations_17_up: formData.observations_17_and_upChecked ? formData.observations_17_and_up : null,
             };            
             const {medicalResponseData, error: medicalError } = await supabase
                 .from('medical_information')
@@ -315,12 +315,12 @@ export default function Registration() {
             trauma: formData.traumaChecked ? formData.trauma : null,
             other_medical_conditions: formData.other_medical_conditionsChecked ? formData.other_medical_conditions : null,
             allergy: formData.allergyChecked ? formData.allergy : null,
-            observations_birth_1: formData.observations_birth_1Checked ? formData.observations_birth_1 : null,
-            observations_2_3: formData.observations_2_3Checked ? formData.observations_2_3 : null,
-            observations_4_7: formData.observations_4_7Checked ? formData.observations_4_7 : null,
-            observations_8_12: formData.observations_8_12Checked ? formData.observations_8_12 : null,
-            observations_13_16: formData.observations_13_16Checked ? formData.observations_13_16 : null,
-            observations_17_up: formData.observations_17_upChecked ? formData.observations_17_up : null,
+            observations_birth_1: formData.observations_from_birth_to_1_YOChecked ? formData.observations_from_birth_to_1_YO : null,
+            observations_2_3: formData.observations_from_2_to_3_YOChecked ? formData.observations_from_2_to_3_YO : null,
+            observations_4_7: formData.observations_from_4_to_7_YOChecked ? formData.observations_from_4_to_7_YO : null,
+            observations_8_12: formData.observations_from_8_to_12_YOChecked ? formData.observations_from_8_to_12_YO : null,
+            observations_13_16: formData.observations_from_13_to_16_YOChecked ? formData.observations_from_13_to_16_YO : null,
+            observations_17_up: formData.observations_17_and_upChecked ? formData.observations_17_and_up : null,
         };
 
         const {medicalResponseData, error: medicalError } = await supabase
@@ -424,18 +424,18 @@ export default function Registration() {
             traumaUnchecked: false,
             other_medical_conditionsChecked: false,
             other_medical_conditionsUnchecked: false,
-            observations_birth_1Checked: false,
-            observations_birth_1Unchecked: false,
-            observations_2_3Checked: false,
-            observations_2_3Unchecked: false,
-            observations_4_7Checked: false,
-            observations_4_7Unchecked: false,
-            observations_8_12Checked: false,
-            observations_8_12Unchecked: false,
-            observations_13_16Checked: false,
-            observations_13_16Unchecked: false,
-            observations_17_upChecked: false,
-            observations_17_upUnchecked: false,
+            observations_from_birth_to_1_YOChecked: false,
+            observations_from_birth_to_1_YOUnchecked: false,
+            observations_from_2_to_3_YOChecked: false,
+            observations_from_2_to_3_YOUnchecked: false,
+            observations_from_4_to_7_YOChecked: false,
+            observations_from_4_to_7_YOUnchecked: false,
+            observations_from_8_to_12_YOChecked: false,
+            observations_from_8_to_12_YOUnchecked: false,
+            observations_from_13_to_16_YOChecked: false,
+            observations_from_13_to_16_YOUnchecked: false,
+            observations_17_and_upChecked: false,
+            observations_17_and_upUnchecked: false,
 
             // Schedule fields
             mondayAvailability: '',
@@ -728,13 +728,13 @@ export default function Registration() {
                     placeholder="Allergies (if no allergies you may leave blank)"
                 />
 
-                <h4 className='mt-10 text-left text-large font-semibold'>Observations from specialists:</h4>
+                <h4 className='mt-10 text-left text-large font-semibold'>Health Problems & Observations from specialists:</h4>
                 <hr className='w-full border-gray-400 mb-3' />
                 <table className="medical-info">
                     {[
-                        'observations_birth_1', 'observations_2_3',
-                        'observations_4_7', 'observations_8_12',
-                        'observations_13_16', 'observations_17_up'
+                        'observations_from_birth_to_1_YO', 'observations_from_2_to_3_YO',
+                        'observations_from_4_to_7_YO', 'observations_from_8_to_12_YO',
+                        'observations_from_13_to_16_YO', 'observations_17_and_up'
                     ].map((field) => (
                         <tbody key={field} className="field w-full">
                             <tr className='w-full'>
