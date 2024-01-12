@@ -240,7 +240,7 @@ export default function Registration() {
         return (
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-700 bg-opacity-50 z-10">
                 <div className="bg-white p-5 rounded-md text-center">
-                    {status === 'success' && <p>Form submitted successfully!</p>}
+                    {status === 'success' && <p>Form submitted successfully!<br/>Please wait to be contacted by our team.</p>}
                     {status === 'error' && <p>Error submitting form. Please try again.</p>}
                     <button onClick={onClose} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">Close</button>
                 </div>

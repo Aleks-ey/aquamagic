@@ -37,10 +37,10 @@ addEventListener('fetch', (event: FetchEvent) => {
                 'Authorization': `Bearer ${RESEND_API_KEY}`,
             },
             body: JSON.stringify({
-                from: 'akhukhua@gmail.com', // verified sender email address
+                from: 'team@bure-aqua.com', // verified sender email address
                 to: 'akhukhua@yahoo.com', // Recipient email address
                 subject: 'test', // Email subject
-                html: '', // Email content in HTML
+                html: emailHtmlContent, // Email content in HTML
             }),
         });
   
@@ -61,7 +61,6 @@ addEventListener('fetch', (event: FetchEvent) => {
     }
 }
   
-
 /* To invoke locally:
 
   1. Run `supabase start` (see: https://supabase.com/docs/reference/cli/supabase-start)
