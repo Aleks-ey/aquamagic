@@ -153,8 +153,6 @@ export default function Admin() {
                                     <option value="event">Event</option>
                                     <option value="schedule">Schedule</option>
                                     <option value="swim meet">Swim Meet</option>
-                                    <option value="meeting">Meeting</option>
-                                    <option value="deadline">Deadline</option>
                                 </select>
                             </td>
                         </tr>

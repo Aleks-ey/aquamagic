@@ -42,13 +42,13 @@ async function fetchData(table: string, registrantId: string) {
 
 function createEmailBody(registrant: Registrant, medicalInfo: MedicalInformation[], emergencyContacts: EmergencyContacts[], schedule: Schedule[]) {
     let emailBody = `
-        Registrant Details:
-        <br /><b>Name:</b> ${registrant.first_name} ${registrant.last_name}
-        <br /><b>Date Of Birth:</b> ${registrant.date_of_birth}
-        <br /><p><b>Email:</b> ${registrant.email ? registrant.email : 'Not provided'}</p>
-        <br /><p><b>Phone Number:</b> ${registrant.phone ? registrant.phone : 'Not provided'}</p>
-        <br /><p><b>Home Address:</b> ${registrant.home_address}</p>
-
+        <h3>Registrant Details:</h3>
+        <p><b>Name:</b> ${registrant.first_name} ${registrant.last_name}</p>
+        <p><b>Date Of Birth:</b> ${registrant.date_of_birth}</p>
+        <p><b>Email:</b> ${registrant.email ? registrant.email : 'Not provided'}</p>
+        <p><b>Phone Number:</b> ${registrant.phone ? registrant.phone : 'Not provided'}</p>
+        <p><b>Home Address:</b> ${registrant.home_address}</p>
+        <br/>
         <h3>Medical Information:</h3>
         ${medicalInfo.map(info => `
             <p><b>Allergy:</b> ${info.allergy ?? 'Not provided'}</p>
@@ -63,17 +63,17 @@ function createEmailBody(registrant: Registrant, medicalInfo: MedicalInformation
             <p><b>Main Health Complaints:</b> ${info.main_health_complaints ?? 'Not provided'}</p>
             <p><b>Medication:</b> ${info.medication ?? 'Not provided'}</p>
             <p><b>Mental Problems:</b> ${info.mental_problems ?? 'Not provided'}</p>
-            <p><b>Observations (13-16 years):</b> ${info.observations_13_16 ?? 'Not provided'}</p>
-            <p><b>Observations (17 and up):</b> ${info.observations_17_up ?? 'Not provided'}</p>
+            <p><b>Surgery:</b> ${info.surgery ?? 'Not provided'}</p>
+            <p><b>Trauma:</b> ${info.trauma ?? 'Not provided'}</p>
+            <p><b>Other Medical Conditions:</b> ${info.other_medical_conditions ?? 'Not provided'}</p>
+            <p><b>Observations (Birth-1 year):</b> ${info.observations_birth_1 ?? 'Not provided'}</p>
             <p><b>Observations (2-3 years):</b> ${info.observations_2_3 ?? 'Not provided'}</p>
             <p><b>Observations (4-7 years):</b> ${info.observations_4_7 ?? 'Not provided'}</p>
             <p><b>Observations (8-12 years):</b> ${info.observations_8_12 ?? 'Not provided'}</p>
-            <p><b>Observations (Birth-1 year):</b> ${info.observations_birth_1 ?? 'Not provided'}</p>
-            <p><b>Other Medical Conditions:</b> ${info.other_medical_conditions ?? 'Not provided'}</p>
-            <p><b>Surgery:</b> ${info.surgery ?? 'Not provided'}</p>
-            <p><b>Trauma:</b> ${info.trauma ?? 'Not provided'}</p>
+            <p><b>Observations (13-16 years):</b> ${info.observations_13_16 ?? 'Not provided'}</p>
+            <p><b>Observations (17 and up):</b> ${info.observations_17_up ?? 'Not provided'}</p>
             `).join('')}
-
+        <br/>
         <h3>Emergency Contacts:</h3>
         ${emergencyContacts.map(contact => `
             <p><b>Name:</b> ${contact.first_name} ${contact.last_name}</p>
@@ -81,8 +81,7 @@ function createEmailBody(registrant: Registrant, medicalInfo: MedicalInformation
             <p><b>Phone Number:</b> ${contact.phone}</p>
             <p><b>Relationship:</b> ${contact.relation}</p>
             `).join('')}
-        
-
+        <br/>
         <h3>Schedule:</h3>
         ${schedule.map(schedule => `
             <p><b>Monday:</b> ${schedule.monday_availability}</p>
@@ -117,7 +116,7 @@ serve(async (req) => {
         },
         body: JSON.stringify({
             from: "aquamagic <team@bure-aqua.com>",
-            to: "akhukhua@yahoo.com",
+            to: ["aquamagicnb@gmail.com", "akhukhua@gmail.com"],
             subject: payload.old_record ? "Registrant has been updated" : "A new registrant has been added",
             html: emailBody,
         }),
@@ -129,8 +128,6 @@ serve(async (req) => {
     return new Response("ok");
 });
 
-
-  
 /* To invoke locally:
 
   1. Run `supabase start` (see: https://supabase.com/docs/reference/cli/supabase-start)
