@@ -170,7 +170,7 @@ export default function Home() {
             taking into account the individual characteristics of each person, 
             using a variety of methodological techniques, homework, joint work with parents, and much more.
             </p>
-            <Link href="/mission" className="text-pool-water md:text-white md:hover:text-blue-700 self-center bg-white md:bg-blue-400 lg:self-start mt-8 max-w-max rounded-md border-2 md:border-blue-400 hover:border-2 md:hover:border-blue-700 p-2">
+            <Link href="/about" className="text-pool-water md:text-white md:hover:text-blue-700 self-center bg-white md:bg-blue-400 lg:self-start mt-8 max-w-max rounded-md border-2 md:border-blue-400 hover:border-2 md:hover:border-blue-700 p-2">
               Learn More
             </Link>
           </div>
