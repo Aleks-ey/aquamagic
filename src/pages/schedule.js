@@ -73,17 +73,17 @@ function Schedule() {
                                     eventDate.setMinutes(eventDate.getMinutes() + eventDate.getTimezoneOffset()); // Convert to local time
                                     return eventDate.toDateString() === formatDay(isoDay);
                                 })
-                                        .map(event => (
-                                            <div key={event.id} className='flex flex-col items-center p-2'>
-                                                <div className='flex flex-row'>
-                                                    <h3 className=''>{event.title}</h3>
-                                                    &nbsp;<p>({event.coach})</p>
-                                                </div>
-                                                <div className='flex flex-row'>
-                                                <p>{formatStandardTime(event.start_time)}</p>&nbsp;-&nbsp;<p>{formatStandardTime(event.end_time)}</p>
-                                                </div>
-                                                <hr className='w-4/5'/>
-                                            </div>
+                                .map(event => (
+                                    <div key={event.id} className='flex flex-col items-center p-2'>
+                                        <div className='flex flex-row'>
+                                            <h3 className=''>{event.title}</h3>
+                                            &nbsp;<p>({event.coach})</p>
+                                        </div>
+                                        <div className='flex flex-row'>
+                                        <p>{formatStandardTime(event.start_time)}</p>&nbsp;-&nbsp;<p>{formatStandardTime(event.end_time)}</p>
+                                        </div>
+                                        <hr className='w-4/5'/>
+                                    </div>
                                 ))}
                             </div>
                         ))}
@@ -106,7 +106,7 @@ function Schedule() {
                         Find a saveable copy of the schedule below
                     </p>
                 </div>
-                {/* <Image className='self-center' src='/BureAquaDec2.jpg' width='1000' height='450' alt='December Calendar Image'></Image> */}
+                <Image className='self-center' src='/schedules/BureAquaFeb24.jpg' width='1000' height='450' alt='Calendar Image'></Image>
             </div>
         </div>
     );
