@@ -107,6 +107,7 @@ function Calendar({ daysInfo }) {
                                     isCurrentMonthDay && dateCategories[cellDateISOString]?.map((category) => {
                                         if (category === 'schedule') return <span key={category} className="dot bg-pool-water"></span>;
                                         if (category === 'event') return <span key={category} className="dot bg-orange-400"></span>;
+                                        if (category === 'swim meet') return <span key={category} className="dot bg-green-600"></span>;
                                         // Add more categories as needed
                                     })
                                 }

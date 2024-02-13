@@ -2,10 +2,18 @@
     max-width: 800px;
 }
 
+.calendar-container-delete {
+    width: 50%;
+}
+
 @media screen and (max-width: 768px) {
     .calendar-container {
         max-width: 400px;
         border: 1px solid #ddd;
+    }
+
+    .calendar-container-delete {
+        width: 100%;
     }
 }
 
