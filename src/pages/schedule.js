@@ -106,7 +106,7 @@ function Schedule() {
                         Find a saveable copy of the schedule below
                     </p>
                 </div>
-                <Image className='self-center' src='/schedules/BureAquaFeb24.jpg' width='1000' height='450' alt='Calendar Image'></Image>
+                <Image className='self-center' src='/schedules/BureAquaMay24.png' width='1000' height='450' alt='Calendar Image'></Image>
             </div>
         </div>
     );
