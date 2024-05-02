@@ -68,6 +68,12 @@
     border: 2px solid #2298FF;
 }
 
+.cevent-title {
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    overflow-wrap: break-word;
+}
+
 .cevents-list {
     padding-left: 20px;
 }
@@ -91,7 +97,7 @@
 }
 
 .cevent-desc {
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     max-height: 120px;
     overflow-y: auto;
 }
