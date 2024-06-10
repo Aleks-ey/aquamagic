@@ -175,7 +175,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="flex w-full lg:w-3/5 h-auto bg-blue-300 rounded-lg">
-            <Image src="/SwimComp.jpeg" width={300} height={300} className="object-cover w-full rounded-lg"/>
+            <Image src="/SwimComp.jpeg" alt="" width={300} height={300} className="object-cover w-full rounded-lg"/>
           </div>
         </div>
       </div>
@@ -222,9 +222,9 @@ export default function Home() {
             </Link>
           </div>
           <div className="flex w-full lg:w-3/5 h-auto bg-blue-300 rounded-lg">
-            <Image src="/NataliaTeachingKid2.png" width={300} height={300} className="hidden md:flex w-full md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
-            <Image src="/Natalia&Vladimir.jpg" width={300} height={300} className="w-full md:hidden md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
-            <Image src="/VladimirTeachingKid.jpg" width={300} height={300} className="hidden md:flex w-1/2 rounded-tr-lg rounded-br-lg"/>
+            <Image src="/NataliaTeachingKid2.png" alt="Swim coach Natalia teaching a child to swim" width={300} height={300} className="hidden md:flex w-full md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
+            <Image src="/Natalia&Vladimir.jpg" alt="Swim Coaches Natalia & Vladimir Bure" width={300} height={300} className="w-full md:hidden md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
+            <Image src="/VladimirTeachingKid.jpg" alt="Swim coach Vladimir helping a kid with his breast stroke" width={300} height={300} className="hidden md:flex w-1/2 rounded-tr-lg rounded-br-lg"/>
           </div>
 
           <div className="hidden lg:flex lg:flex-col justify-center pl-20 w-2/5 text-right">
