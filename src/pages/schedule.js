@@ -89,43 +89,42 @@ function Schedule() {
                         ))}
                     </div> */}
                     <div className='flex flex-col md:flex-row mx-4 gap-x-4 w-full justify-center overflow-visible'>
-    {weekDays.map(isoDay => {
-        const dayEvents = schedule.filter(event => {
-            let eventDate = new Date(event.date);
-            eventDate.setMinutes(eventDate.getMinutes() + eventDate.getTimezoneOffset()); // Convert to local time
-            return eventDate.toDateString() === formatDay(isoDay);
-        });
+                        {weekDays.map(isoDay => {
+                            const dayEvents = schedule.filter(event => {
+                                let eventDate = new Date(event.date);
+                                eventDate.setMinutes(eventDate.getMinutes() + eventDate.getTimezoneOffset()); // Convert to local time
+                                return eventDate.toDateString() === formatDay(isoDay);
+                            });
 
-        // Determine the location of the first event of the day
-        const firstEvent = dayEvents[0]; // Get the first event if it exists
-        const location = firstEvent ? firstEvent.location : "default";
-        const locationName = firstEvent ? firstEvent.location : "No Lessons";
+                            // Determine the location of the first event of the day
+                            const firstEvent = dayEvents[0]; // Get the first event if it exists
+                            const location = firstEvent ? firstEvent.location : "default";
+                            const locationName = firstEvent ? firstEvent.location : "No Lessons";
 
-        // Set the color based on the location
-        const bgColor = location === 'Rangeview' ? 'bg-pool-water' : location === 'Gateway' ? 'bg-green-500' : 'bg-black';
+                            // Set the color based on the location
+                            const bgColor = location === 'Rangeview' ? 'bg-pool-water' : location === 'Gateway' ? 'bg-green-500' : 'bg-black';
 
-        return (
-            <div key={isoDay} className='flex flex-col my-2 md:my-2 md:w-1/3 h-80 border-2 border-black'>
-                <div className={`flex p-2 ${bgColor} text-white justify-center`}>
-                    {`${formatDay(isoDay).split(' ')[0]}, ${formatDay(isoDay).split(' ')[1]} ${formatDay(isoDay).split(' ')[2]} - ${locationName}`}
-                </div>
-                {dayEvents.map(event => (
-                    <div key={event.id} className='flex flex-col items-center p-2'>
-                        <div className='flex flex-row'>
-                            <h3 className=''>{event.title}</h3>
-                            &nbsp;<p>({event.coach})</p>
-                        </div>
-                        <div className='flex flex-row'>
-                            <p>{formatStandardTime(event.start_time)}</p>&nbsp;-&nbsp;<p>{formatStandardTime(event.end_time)}</p>
-                        </div>
-                        <hr className='w-4/5'/>
+                            return (
+                                <div key={isoDay} className='flex flex-col my-2 md:my-2 md:w-1/3 h-80 border-2 border-black'>
+                                    <div className={`flex p-2 ${bgColor} text-white justify-center`}>
+                                        {`${formatDay(isoDay).split(' ')[0]}, ${formatDay(isoDay).split(' ')[1]} ${formatDay(isoDay).split(' ')[2]} - ${locationName}`}
+                                    </div>
+                                    {dayEvents.map(event => (
+                                        <div key={event.id} className='flex flex-col items-center p-2'>
+                                            <div className='flex flex-row'>
+                                                <h3 className=''>{event.title}</h3>
+                                                &nbsp;<p>({event.coach})</p>
+                                            </div>
+                                            <div className='flex flex-row'>
+                                                <p>{formatStandardTime(event.start_time)}</p>&nbsp;-&nbsp;<p>{formatStandardTime(event.end_time)}</p>
+                                            </div>
+                                            <hr className='w-4/5'/>
+                                        </div>
+                                    ))}
+                                </div>
+                            );
+                        })}
                     </div>
-                ))}
-            </div>
-        );
-    })}
-</div>
-
                 </div>
                 <div className='block md:hidden relative w-full mt-10 h-6'>
                     <button onClick={prevWeek} className='absolute top-0 left-10 scale-150'>
@@ -144,7 +143,10 @@ function Schedule() {
                         Find a saveable copy of the schedule below
                     </p>
                 </div>
-                <Image className='self-center' src='/schedules/BureAquaJune24.png' width='1000' height='450' alt='Calendar Image'></Image>
+                <Image src='/schedules/BureAquaJune24.png' alt='Saveable Calendar' 
+                    width='1000' height='450' priority={true}
+                    className='self-center w-auto h-auto'
+                />
             </div>
         </div>
     );

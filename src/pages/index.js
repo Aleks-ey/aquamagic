@@ -111,7 +111,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="h-auto w-full p-8 md:p-20 pt-6 text-center"> 
+      <div className="h-auto w-full px-8 md:p-20 py-6 text-center"> 
         <h2 className="text-2xl text-red-500">Why Bure?</h2>
         <p>The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!</p>
         
@@ -132,139 +132,128 @@ export default function Home() {
       </div>
       {/* <div className="w-4/5 h-1 bg-black"></div> */}
       
-      <div className="bg-gradient-to-t from-pool-water from-60% to-white md:from-white">
-        <div className="flex flex-shrink lg:hidden h-full pt-12 pb-16">
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+      <div className="bg-gradient-to-t from-pool-water from-60% to-white lg:from-white">
+        <div className="flex flex-shrink lg:hidden h-full py-16">
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
         </div>
 
         <div className="flex flex-col lg:flex-row w-full px-4 md:px-16 items-center">
           <div className="flex flex-col justify-center px-4 pb-20 lg:pb-0 lg:pr-20 w-full lg:w-2/5 text-center lg:text-left">
-            <h2 className="text-lg text-white md:text-black">Our Program</h2>
+            <h2 className="text-2xl lg:text-xl text-white md:text-black">Our Program</h2>
             <hr className="border-white md:border-black"></hr>
             <p className="text-white md:text-black">
-            Our mission is to use an academic approach, with proper teaching principals, to elevate all of our students and constantly improve their swimming skills.
-            From simple to complex, 
-            improving skills (including participation in sports competitions), 
-            taking into account the individual characteristics of each person, 
-            using a variety of methodological techniques, homework, joint work with parents, and much more.
+              Our mission is to use an academic approach, with proper teaching principals, to elevate all of our students and constantly improve their swimming skills.
+              From simple to complex, 
+              improving skills (including participation in sports competitions), 
+              taking into account the individual characteristics of each person, 
+              using a variety of methodological techniques, homework, joint work with parents, and much more.
             </p>
             <Link href="/about" className="text-pool-water md:text-white md:hover:text-blue-700 self-center bg-white md:bg-blue-400 lg:self-start mt-8 max-w-max rounded-md border-2 md:border-blue-400 hover:border-2 md:hover:border-blue-700 p-2">
               Learn More
             </Link>
           </div>
           <div className="flex w-full lg:w-3/5 h-auto bg-blue-300 rounded-lg">
-            <Image src="/SwimComp.jpeg" alt="" width={300} height={300} className="object-cover w-full rounded-lg"/>
+            <Image src="/Rangeview_HS_photo.jpg" alt="" width={600} height={600} className="object-cover w-full rounded-lg"/>
           </div>
         </div>
       </div>
 
-      <div className="bg-gradient-to-b from-pool-water from-60% to-white md:from-white">
+      <div className="bg-gradient-to-b from-pool-water from-60% to-white lg:from-white">
 
-        <div className="flex flex-shrink lg:hidden h-full pt-16">
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                      <div className="bg-black h-6 w-1"></div>
-                      <div className="bg-white h-6 w-1/12 rounded-md"></div>
+        <div className="flex flex-shrink lg:hidden h-full py-16">
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
         </div>
 
-        <div className="flex flex-col lg:flex-row w-full pt-24 px-4 md:px-16 pb-24 items-center">
-          <div className="flex flex-col justify-center w-full text-center pb-20 lg:hidden">
-            <h2 className="text-lg text-white md:text-black">Meet the Team</h2>
-            <hr className="border-white md:border-black"></hr>
-            <p className="text-white md:text-black">
-            The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!
-            They are fully dedicated to their craft and are passionate about teaching swimming to all ages and abilities.
-            Natalia and Vladimir work together to foster a community of swimmers who are confident in the water and love swimming.
-            </p>
-            <Link href="/about" className="text-pool-water md:text-white md:hover:text-blue-700 self-center bg-white md:bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 md:border-blue-400 hover:border-2 md:hover:border-blue-700 p-2">
-              Learn More
-            </Link>
-          </div>
+        <div className="flex flex-col-reverse lg:flex-row w-full px-4 md:px-16 lg:my-44 items-center">
+          
           <div className="flex w-full lg:w-3/5 h-auto bg-blue-300 rounded-lg">
             <Image src="/NataliaTeachingKid2.png" alt="Swim coach Natalia teaching a child to swim" width={300} height={300} className="hidden md:flex w-full md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
             <Image src="/Natalia&Vladimir.jpg" alt="Swim Coaches Natalia & Vladimir Bure" width={300} height={300} className="w-full md:hidden md:w-1/2 rounded-lg lg:rounded-tl-lg lgrounded-bl-lg lg:rounded-tr-none lg:rounded-br-none"/>
             <Image src="/VladimirTeachingKid.jpg" alt="Swim coach Vladimir helping a kid with his breast stroke" width={300} height={300} className="hidden md:flex w-1/2 rounded-tr-lg rounded-br-lg"/>
           </div>
 
-          <div className="hidden lg:flex lg:flex-col justify-center pl-20 w-2/5 text-right">
-            <h2 className="text-lg">Meet the Team</h2>
-            <hr className="border-black"></hr>
-            <p>
-            The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!
-            They are fully dedicated to their craft and are passionate about teaching swimming to all ages and abilities.
-            Natalia and Vladimir work together to foster a community of swimmers who are confident in the water and love swimming.
+          <div className="flex flex-col justify-center w-full lg:w-2/5 text-center lg:text-right pb-20 lg:pb-0 lg:pl-20">
+            <h2 className="text-2xl lg:text-xl text-white md:text-black">Meet the Team</h2>
+            <hr className="border-white md:border-black"></hr>
+            <p className="text-white md:text-black">
+              The founders of this academy are Natalia and Vladimir Bure. Certified specialists with over 30 years of experience!
+              They are fully dedicated to their craft and are passionate about teaching swimming to all ages and abilities.
+              Natalia and Vladimir work together to foster a community of swimmers who are confident in the water and love swimming.
             </p>
-            <Link href="/about" className="text-white hover:text-blue-700 self-center bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 border-blue-400 hover:border-2 hover:border-blue-700 p-2">
+            <Link href="/about" className="text-pool-water md:text-white md:hover:text-blue-700 self-center bg-white md:bg-blue-400 lg:self-end mt-8 max-w-max rounded-md border-2 md:border-blue-400 hover:border-2 md:hover:border-blue-700 p-2">
               Learn More
             </Link>
           </div>
         </div>
         
-        <div className="flex flex-shrink lg:hidden h-full pb-16">
-                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
-                    <div className="bg-black h-6 w-1"></div>
-                    <div className="bg-white h-6 w-1/12 rounded-md"></div>
+        <div className="flex flex-shrink lg:hidden h-full py-16 mb-24">
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-buoy-orange h-6 w-1/12 rounded-md"></div>
+          <div className="bg-black h-6 w-1"></div>
+          <div className="bg-white h-6 w-1/12 rounded-md"></div>
         </div>
       </div>
 
