@@ -34,9 +34,9 @@ const Location = () => {
                             </li>
                             <li>Enter the school from the main entrance north of the parking lot and up the stairs, highlighted by the
                                 <p className="inline font-bold text-red-500"> red box</p>. 
-                                There will be two signs next to the entrance that say "pool enterance" and "athletic enterance". 
+                                There will be two signs next to the entrance that say "pool entrance" and "athletic entrance". 
                             </li>
-                            <li>Take an immediate right once you enter into the school, and head through the doors into the hallway leading to the pool.</li>
+                            <li>Follow the sign leading towards the "athletic entrance". also known as door 2.</li>
                             <li>The pool doors will be on your left as you walk down the hallway.</li>
                             <li>Enjoy your swim!</li>
                         </ul>
