@@ -44,7 +44,7 @@ export default function Home() {
     <main className="bg-white">
 
 
-      <div className="flex flex-row h-auto mt-20 md:mt-24 pl-2 pr-3 space-x-8 md:space-x-24 lg:space-x-32 justify-center">
+      <div className="flex flex-row h-auto mt-20 md:mt-24 pl-2 pr-3 space-x-8 md:space-x-24 lg:space-x-36 justify-center">
         <Link href="https://www.usaswimming.org/">
           <Image src="/images/USAswimLogo.png" alt="USA Swimming Logo" width="100" height="0" className="z-100 w-20 h-auto" />
         </Link>
