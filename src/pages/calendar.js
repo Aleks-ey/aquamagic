@@ -106,8 +106,9 @@ function Calendar({ daysInfo }) {
                                     // Check if the day is from the current month before showing categories
                                     isCurrentMonthDay && dateCategories[cellDateISOString]?.map((category) => {
                                         if (category === 'schedule') return <span key={category} className="dot bg-pool-water"></span>;
+                                        if (category === 'Gateway') return <span key={category} className="dot bg-green-600"></span>;
                                         if (category === 'event') return <span key={category} className="dot bg-orange-400"></span>;
-                                        if (category === 'swim meet') return <span key={category} className="dot bg-green-600"></span>;
+                                        if (category === 'swim meet') return <span key={category} className="dot bg-purple-400"></span>;
                                         // Add more categories as needed
                                     })
                                 }
@@ -126,7 +127,13 @@ function Calendar({ daysInfo }) {
                     {selectedDateEvents.map(event => (
                         <div key={event.id} className="cevent-item flex flex-col p-4 bg-slate-100">
                             <div className='flex flex-row'>
-                                <h3>{event.title}</h3> &nbsp; (<p>{formatStandardTime(event.start_time)}</p>&nbsp;-&nbsp;<p>{formatStandardTime(event.end_time)}</p>)
+                                <h3 className='cevent-title w-2/3'>{event.title}</h3> 
+                                &nbsp; 
+                                <p>(</p>
+                                <p className='w-min whitespace-nowrap'>{formatStandardTime(event.start_time)}</p>
+                                &nbsp;-&nbsp;
+                                <p className='w-min whitespace-nowrap'>{formatStandardTime(event.end_time)}</p>
+                                <p>)</p>
                             </div>
                             <hr/>
                             <p className='cevent-desc'>{event.description}</p>

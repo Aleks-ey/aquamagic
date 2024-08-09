@@ -4,10 +4,14 @@ import AddEvent from '@/components/addEvent';
 import DeleteEvent from '@/components/deleteEvent';
 
 export default function Admin() {
+    const handleEventSaved = () => {
+        console.log('Event was saved successfully!');
+        // Additional logic to handle after saving an event
+    };
 
     return (
         <div className='admin_container'>
-            <AddEvent />
+            <AddEvent onEventSaved={handleEventSaved}/>
             <DeleteEvent />
         </div>
     );

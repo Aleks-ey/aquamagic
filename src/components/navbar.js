@@ -22,22 +22,22 @@ const Navbar = () => {
                 <div className="flex items-center w-full justify-between">
                     {/* Logo and title */}
                     <div className="flex items-center">
-                        <div className="hidden lg:block">
-                            <Image src="/Logo_Bure-Aqua3.png" alt="Logo" width={80} height={40} />
-                        </div>
-                        <div className="hidden md:block lg:hidden">
-                            <Image src="/Logo_Bure-Aqua3.png" alt="Logo" width={70} height={40} />
-                        </div>
-                        <div className="block md:hidden">
-                            <Image src="/Logo_Bure-Aqua3.png" alt="Logo" width={60} height={40} />
-                        </div>
+                        <Link href="/">
+                            <div className="flex relative w-16 h-16">
+                                <Image src="/Logo_Bure-Aqua3.png" alt="Logo" 
+                                    fill={true} priority={true} 
+                                    className="w-auto h-auto"
+                                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 40vw, (max-width: 1024px) 30vw, 25vw"
+                                />
+                            </div>
+                        </Link>
                         <div className="flex flex-col">
-                            <h1 className="ml-2 md:text-xl lg:text-2xl font-semibold text-blue-900">
+                            <h1 className="ml-2 text-lg md:text-xl lg:text-2xl font-semibold text-blue-900">
                                 <Link href="/">
-                                Bure-Aqua Academy
+                                    Bure-Aqua Academy
                                 </Link>
                             </h1>
-                            <h2 className="ml-2 text-base lg:text-l text-sky-500">
+                            <h2 className="ml-2 md:text-lg lg:text-xl text-sky-500">
                                 <Link href="/">
                                     For Life, Health, and Sport
                                 </Link>
@@ -46,7 +46,7 @@ const Navbar = () => {
                     </div>
             
                     {/* Desktop navigation */}
-                    <nav className="hidden md:flex ml-auto md:space-x-3 md:text-md lg:space-x-4 lg:text-l font-bold">
+                    <nav className="hidden md:flex ml-auto md:space-x-3 md:text-md lg:space-x-4 lg:text-lg font-bold">
                         <Link href="/" className="text-blue-900 hover:text-blue-600">
                             Home
                         </Link>

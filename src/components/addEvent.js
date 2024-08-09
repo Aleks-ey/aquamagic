@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import DatePicker from "react-multi-date-picker";
 import { supabase } from '../utils/supabaseClient';
 
-function AddEvent({ selectedEventId = null}) {
+function AddEvent({ selectedEventId = null, onEventSaved={handleEventSaved}}) {
     // State for event details
     const [dates, setDates] = useState([]);
     const [title, setTitle] = useState('');
@@ -14,6 +14,7 @@ function AddEvent({ selectedEventId = null}) {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [eventsByDate, setEventsByDate] = useState([]);
+    const [shouldReset, setShouldReset] = useState(true);
 
     // Reset form fields
     const resetForm = () => {
@@ -84,7 +85,9 @@ function AddEvent({ selectedEventId = null}) {
 
         if (!error) {
             onEventSaved(); // Ensure this is passed as a prop from the parent component
-            resetForm();
+            if (shouldReset) {  // Check if form should reset
+                resetForm();
+            }
         } else {
             console.error("Error saving event:", error);
         }
@@ -241,6 +244,15 @@ function AddEvent({ selectedEventId = null}) {
                         </tr>
                     </tbody>
                 </table>
+                <div className="text-center mt-4">
+                    <input 
+                        type="checkbox" 
+                        checked={shouldReset} 
+                        onChange={(e) => setShouldReset(e.target.checked)} 
+                        className="mr-2"
+                    />
+                    <label>Reset form</label>
+                </div>
                 <div className="text-center mt-4">
                     <button 
                         type="submit" 
