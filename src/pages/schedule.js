@@ -109,6 +109,7 @@ function Schedule() {
                                     <div className={`flex p-2 ${bgColor} text-white justify-center`}>
                                         {`${formatDay(isoDay).split(' ')[0]}, ${formatDay(isoDay).split(' ')[1]} ${formatDay(isoDay).split(' ')[2]} - ${locationName}`}
                                     </div>
+                                    <div className='overflow-y-auto'>
                                     {dayEvents.map(event => (
                                         <div key={event.id} className='flex flex-col items-center p-2'>
                                             <div className='flex flex-row'>
@@ -121,6 +122,7 @@ function Schedule() {
                                             <hr className='w-4/5'/>
                                         </div>
                                     ))}
+                                    </div>
                                 </div>
                             );
                         })}
@@ -143,7 +145,7 @@ function Schedule() {
                         Find a saveable copy of the schedule below
                     </p>
                 </div>
-                <Image src='/schedules/BureAquaAug24.png' alt='Saveable Calendar' 
+                <Image src='/schedules/BureAquaSept24.png' alt='Saveable Calendar' 
                     width='1000' height='450' priority={true}
                     className='self-center w-auto h-auto'
                 />
