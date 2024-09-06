@@ -1,5 +1,5 @@
 .calendar-container {
-    max-width: 800px;
+    max-width: 60%;
 }
 
 .calendar-container-delete {
@@ -19,11 +19,14 @@
 
 .lg-calendar-container {
     border: 1px solid #ddd;
+    height: max-content;
+    width: 40%;
 }
 
 @media screen and (max-width: 768px) {
     .lg-calendar-container {
         border: none;
+        width: 100%;
     }
 }
 
