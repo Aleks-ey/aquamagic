@@ -133,43 +133,45 @@ function Calendar({ daysInfo }) {
 
             {/* Display events for the selected date */}
             {selectedDateEvents.length > 0 && (
-    <div className='md:flex md:flex-col md:w-3/5'>
-        <div className="cevents-list">
-            {selectedDateEvents.map(event => {
-                let eventClass = 'cevent-item flex flex-col p-4 bg-slate-100';
+                <div className='md:flex md:flex-col md:w-3/5'>
+                    <div className="cevents-list">
+                        {selectedDateEvents.map(event => {
+                            let eventClass = 'cevent-item flex flex-col p-4';
 
-                // Conditionally set the background color based on event location
-                if (event.location === 'Gateway') {
-                    eventClass += ' bg-green-100 border border-green-400';
-                } else if (event.location === 'Rangeview') {
-                    eventClass += ' bg-blue-100 border border-blue-400';
-                }
+                            // Conditionally set the background color based on event location
+                            if (event.location === 'Gateway') {
+                                eventClass += ' bg-green-100 border border-green-400';
+                            } else if (event.location === 'Rangeview') {
+                                eventClass += ' bg-blue-100 border border-blue-400';
+                            } else {
+                                eventClass += ' bg-slate-100 border border-gray-400';
+                            }
 
-                return (
-                    <div key={event.id} className={eventClass}>
-                        <div className='flex flex-row'>
-                            <h3 className='cevent-title w-2/3'>{event.title}</h3> 
-                            &nbsp; 
-                            <p>(</p>
-                            <p className='w-min whitespace-nowrap'>{formatStandardTime(event.start_time)}</p>
-                            &nbsp;-&nbsp;
-                            <p className='w-min whitespace-nowrap'>{formatStandardTime(event.end_time)}</p>
-                            <p>)</p>
-                        </div>
-                        <hr />
-                        {event.category === 'schedule' && (
-                            <span>
-                                <p className='cevent-coach'>Coach: {event.coach}</p>
-                                <p className='cevent-location'>Location: {event.location}</p>
-                            </span>
-                        )}
-                        <p className='cevent-desc'>{event.description}</p>
+                            return (
+                                <div key={event.id} className={eventClass}>
+                                    <div className='flex flex-row'>
+                                        <h3 className='cevent-title w-2/3'>{event.title}</h3> 
+                                        &nbsp; 
+                                        <p>(</p>
+                                        <p className='w-min whitespace-nowrap'>{formatStandardTime(event.start_time)}</p>
+                                        &nbsp;-&nbsp;
+                                        <p className='w-min whitespace-nowrap'>{formatStandardTime(event.end_time)}</p>
+                                        <p>)</p>
+                                    </div>
+                                    <hr />
+                                    {event.category === 'schedule' && (
+                                        <span>
+                                            <p className='cevent-coach'>Coach: {event.coach}</p>
+                                            <p className='cevent-location'>Location: {event.location}</p>
+                                        </span>
+                                    )}
+                                    <p className='cevent-desc'>{event.description}</p>
+                                </div>
+                            );
+                        })}
                     </div>
-                );
-            })}
-        </div>
-    </div>
-)}
+                </div>
+            )}
 
         </div>
     );
