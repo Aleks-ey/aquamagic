@@ -2,6 +2,8 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import HomeNews from "@/components/homeNews";
+import Partners from "@/components/partners";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -201,30 +203,13 @@ export default function Home() {
         </p>
         {/* <p className="text-xl">Aqua – water... This is a unique environment for our body. 
         <br/> And our mission is to show the importance of water for life, health, and sports!</p> */}
-        <hr className="mt-20 border-black invisible lg:visible"></hr>
+        <hr className="mt-20 border-black visible"></hr>
       </div>
       {/* <div className="w-4/5 h-1 bg-black"></div> */}
-      <div className="h-auto w-full px-8 md:p-20 md:pt-10 py-6 text-center">
-        <div className="flex flex-col items-center">
-          <h2 className="text-4xl text-black">Our Partners</h2>
-          <p>We are proud to be affiliated with the following organizations:</p>
-        </div>
-        {/* one column on small screens to 3 columns on large for cards containing the name and logo for partners */}
-        <div className="flex flex-col md:flex-row p-10 justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
-          <div className="flex flex-col items-center">
-            <Link href="https://www.usaswimming.org/">
-              <Image
-                src="/images/swimnthingsLogo-removebg2.png"
-                alt="USA Swimming Logo"
-                width="200"
-                height="200"
-                className="z-100 w-auto h-auto"
-              />
-            </Link>
-            <p>Swim' N Things</p>
-          </div>
-        </div>
-
+      {/* ---------------------- NEWS AND OUR PARTNERS SECTION ---------------------- */}
+      <div className="h-auto w-full px-4 md:p-16 md:pt-0 text-center">
+        <HomeNews />
+        <Partners />
         <hr className="mt-20 border-black invisible lg:visible"></hr>
       </div>
 
