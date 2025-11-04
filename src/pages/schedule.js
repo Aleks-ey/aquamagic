@@ -262,7 +262,7 @@ function Schedule() {
           </p>
         </div>
         <Image
-          src="/schedules/BureAquaSep25.png"
+          src="/schedules/BureAquaNov25.png"
           alt="Saveable Calendar"
           width="1000"
           height="450"

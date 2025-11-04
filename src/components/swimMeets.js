@@ -39,9 +39,11 @@ export default function SwimMeets() {
   }, []);
 
   async function fetchMeets() {
+    const today = new Date().toISOString().split("T")[0];
     const { data, error } = await supabase
       .from("calendar_meets")
       .select("*")
+      .or(`end_date.gte.${today},and(date_range.eq.false,date.gte.${today})`)
       .order("date", { ascending: true });
 
     if (error) {
