@@ -11,6 +11,9 @@ function getYearMonth(dateObj) {
 }
 
 function Schedule() {
+  // For schedule image
+  const [scheduleImageUrl, setScheduleImageUrl] = useState(null);
+
   const [schedule, setSchedule] = useState([]);
   const [loadedMonths, setLoadedMonths] = useState([]);
   // This tracks which "YYYY-MM" months we've already fetched
@@ -103,6 +106,21 @@ function Schedule() {
     setSchedule((prev) => [...prev, ...data]);
     console.log("Fetched", data.length, "events for", yearMonth);
   }
+
+  // Fetch schedule image URL on mount
+  useEffect(() => {
+    async function loadImage() {
+      const { data } = supabase.storage
+        .from("scheduleImage")
+        .getPublicUrl("currentSchedule.png");
+
+      if (data?.publicUrl) {
+        setScheduleImageUrl(data.publicUrl);
+      }
+    }
+
+    loadImage();
+  }, []);
 
   // Helper: get all YYYY-MM strings in the range [startDate, endDate]
   function getAllMonthsInRange(startDate, endDate) {
@@ -261,14 +279,20 @@ function Schedule() {
             Find a saveable copy of the schedule below
           </p>
         </div>
-        <Image
-          src="/schedules/BureAquaNov25.png"
-          alt="Saveable Calendar"
-          width="1000"
-          height="450"
-          priority={true}
-          className="self-center w-auto h-auto"
-        />
+        {scheduleImageUrl ? (
+          <Image
+            src={scheduleImageUrl}
+            alt="Current Monthly Schedule"
+            width="1000"
+            height="450"
+            className="self-center w-auto h-auto"
+            priority
+          />
+        ) : (
+          <p className="text-center text-gray-400">
+            No schedule image uploaded yet.
+          </p>
+        )}
       </div>
     </div>
   );
