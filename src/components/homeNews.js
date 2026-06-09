@@ -168,7 +168,7 @@ function HomeNews() {
   // 2) Only banner announcements also appear pinned to the bottom,
   //    unless they’ve been dismissed.
   const bannerAnnouncements = announcements.filter(
-    (a) => a.banner && !dismissedBanners.includes(a.id)
+    (a) => a.banner && !dismissedBanners.includes(a.id),
   );
 
   return (
@@ -218,8 +218,12 @@ function HomeNews() {
                   location === "Rangeview"
                     ? "bg-pool-water"
                     : location === "Gateway"
-                    ? "bg-green-500"
-                    : "bg-black";
+                      ? "bg-green-500"
+                      : location === "Central Aurora High School"
+                        ? "bg-green-500"
+                        : location === "Hinkley High School"
+                          ? "bg-pool-water"
+                          : "bg-black";
                 const isoDay = `${dayObj.date}T00:00:00`;
 
                 return (

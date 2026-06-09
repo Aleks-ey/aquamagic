@@ -48,10 +48,10 @@ function Schedule() {
 
     // Find earliest & latest displayed day
     const earliest = new Date(
-      Math.min(...weekDays.map((d) => new Date(d).getTime()))
+      Math.min(...weekDays.map((d) => new Date(d).getTime())),
     );
     const latest = new Date(
-      Math.max(...weekDays.map((d) => new Date(d).getTime()))
+      Math.max(...weekDays.map((d) => new Date(d).getTime())),
     );
 
     // Extend the range by ±5 days
@@ -197,7 +197,7 @@ function Schedule() {
               const dayEvents = schedule.filter((event) => {
                 const eventDate = new Date(event.date);
                 eventDate.setMinutes(
-                  eventDate.getMinutes() + eventDate.getTimezoneOffset()
+                  eventDate.getMinutes() + eventDate.getTimezoneOffset(),
                 );
                 return eventDate.toDateString() === formatDay(isoDay);
               });
@@ -213,8 +213,12 @@ function Schedule() {
                 location === "Rangeview"
                   ? "bg-pool-water"
                   : location === "Gateway"
-                  ? "bg-green-500"
-                  : "bg-black";
+                    ? "bg-green-500"
+                    : location === "Central Aurora High School"
+                      ? "bg-green-500"
+                      : location === "Hinkley High School"
+                        ? "bg-pool-water"
+                        : "bg-black";
 
               return (
                 <div
